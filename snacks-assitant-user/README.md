@@ -1,1 +1,0 @@
-snacks-assitant-user
