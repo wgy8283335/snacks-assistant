@@ -40,3 +40,11 @@ hystrix:
   threadpool:
     default:
       coreSize: 10  #并发执行的最大线程数，默认10
+#########################################################endpoints######################################################
+management:
+  endpoints:
+    health:
+      enabled: true
+    web:
+      exposure:
+        include: *
