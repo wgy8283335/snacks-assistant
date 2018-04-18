@@ -13,4 +13,7 @@ snacks-assistant-user/mvnw.cmd
 snacks-assistant-zuul/.mvn/
 snacks-assistant-zuul/mvnw
 snacks-assistant-zuul/mvnw.cmd
+snacks-assistant-config/.mvn/
+snacks-assistant-config/mvnw
+snacks-assistant-config/mvnw.cmd
 snacks-assistant.iml
