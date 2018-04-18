@@ -2,20 +2,15 @@ server:
   port: 8899
 spring:
   application:
-    name: eureka-config-server
-  profiles:
-    active: subversion
+    name: snacks-assistant-config
   cloud:
     config:
       server:
-        svn:
-          uri: https://localhost/svn/config-project
-          username: admin
-          password: 123456
-        default-label: eureka
-management:
-  security:
-    enabled: false
+        git:
+          uri: https://github.com/wgy8283335/snacks-assistant/
+          search-paths: configuration-files
+          username: wgy8283335@126.com
+          password: Cc8265739
 eureka:
   client:
     serviceUrl:
