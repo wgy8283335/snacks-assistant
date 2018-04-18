@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+.idea/*
+snacks-assistant-consumer/.mvn/
+snacks-assistant-consumer/mvnw
+snacks-assistant-consumer/mvnw.cmd
+snacks-assistant-eureka/.mvn/
+snacks-assistant-eureka/mvnw
+snacks-assistant-eureka/mvnw.cmd
+snacks-assistant-user/.mvn/
+snacks-assistant-user/mvnw
+snacks-assistant-user/mvnw.cmd
+snacks-assistant-zuul/.mvn/
+snacks-assistant-zuul/mvnw
+snacks-assistant-zuul/mvnw.cmd
+snacks-assistant.iml

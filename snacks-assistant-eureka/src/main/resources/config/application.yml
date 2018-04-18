@@ -1,0 +1,31 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: snacks-assistant-eureka
+  profiles: slave1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://slave2:8762/eureka
+#  instance:
+#    hostname: slave1
+  server:
+    enable-self-preservation: false #关闭自我保护。自我保护模式指：当心跳包的成功率低于80%时，这个客户端实例就会被保护起来，不会被立即从注册表中剔除。
+    Eviction-interval-timer-in-ms: 5000 #清理注册表的时间间隔，定期清理超时没有收到心跳的服务实例
+---
+server:
+  port: 8762
+spring:
+  application:
+    name: snacks-assistant-eureka
+  profiles: slave2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://slave1:8761/eureka
+#  instance:
+#    hostname: slave2
+  server:
+    enable-self-preservation: false #关闭自我保护。自我保护模式指：当心跳包的成功率低于80%时，这个客户端实例就会被保护起来，不会被立即从注册表中剔除。
+    Eviction-interval-timer-in-ms: 5000 #清理注册表的时间间隔，定期清理超时没有收到心跳的服务实例
