@@ -41,10 +41,12 @@ hystrix:
     default:
       coreSize: 10  #并发执行的最大线程数，默认10
 #########################################################endpoints######################################################
-management:
-  endpoints:
-    health:
-      enabled: true
-    web:
-      exposure:
-        include: *
+## 刷新时，关闭安全验证
+management.security.enabled=false
+## 开启消息跟踪
+spring.cloud.bus.trace.enabled=true
+
+spring.rabbitmq.host=192.168.9.89
+spring.rabbitmq.port=15672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
