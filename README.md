@@ -1,2 +1,0 @@
-# snacks-assistant
-
