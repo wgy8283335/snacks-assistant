@@ -3,7 +3,7 @@
 zuul:
   routes:
     sale:
-      path: /**
+      path: /snacks-assistant-consumer
       serviceId: snacks-assistant-consumer
 
 ##########################################################eureka########################################################
