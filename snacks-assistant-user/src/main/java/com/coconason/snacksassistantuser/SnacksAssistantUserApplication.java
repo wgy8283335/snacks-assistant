@@ -2,6 +2,7 @@ package com.coconason.snacksassistantuser;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,10 +21,10 @@ import java.util.Scanner;
 @MapperScan("com.coconason.snacksassistantuser.dao.*")
 public class SnacksAssistantUserApplication {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		String port = scan.nextLine();
-		//SpringApplication.run(SnacksAssistantUserApplication.class, args);
-		new SpringApplicationBuilder(SnacksAssistantUserApplication.class).properties("server.port="+port).run(args);
+		//Scanner scan = new Scanner(System.in);
+		//String port = scan.nextLine();
+		SpringApplication.run(SnacksAssistantUserApplication.class, args);
+		//new SpringApplicationBuilder(SnacksAssistantUserApplication.class).properties("server.port="+port).run(args);
 	}
 	@RestController
 	class ServiceInstanceRestController {

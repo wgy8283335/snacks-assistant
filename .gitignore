@@ -16,4 +16,7 @@ snacks-assistant-zuul/mvnw.cmd
 snacks-assistant-config/.mvn/
 snacks-assistant-config/mvnw
 snacks-assistant-config/mvnw.cmd
+snacks-assistant-bus/.mvn/
+snacks-assistant-bus/mvnw
+snacks-assistant-bus/mvnw.cmd
 snacks-assistant.iml
