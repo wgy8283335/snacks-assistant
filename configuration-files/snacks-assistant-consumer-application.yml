@@ -41,11 +41,6 @@ hystrix:
     default:
       coreSize: 10  #并发执行的最大线程数，默认10
 #########################################################endpoints######################################################
-## 刷新时，关闭安全验证
-management:
-  endpoint:
-    refresh:
-      enabled: true   
 ## 开启消息跟踪
 spring:
   cloud:
