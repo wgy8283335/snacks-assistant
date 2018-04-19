@@ -14,7 +14,7 @@ spring:
   application:
       name: snacks-assistant-user
 server:
-  port: 8081
+  port: 8082
 ##############################################################eureka####################################################
 eureka:
   client:
