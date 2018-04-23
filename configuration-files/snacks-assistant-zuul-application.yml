@@ -16,8 +16,6 @@ management:
       enabled: true
     health:
       enabled: true
-management:
-  endpoints:
     web:
       exposure:
         include: refresh,health,routes
