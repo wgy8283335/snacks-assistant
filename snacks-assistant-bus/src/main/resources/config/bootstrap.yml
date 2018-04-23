@@ -8,7 +8,7 @@ spring:
       discovery:
         enabled: true
         service-id: snacks-assistant-config
-      profile: application   # snacks-assistant-consumer-application.yml
+      profile: application   # snacks-assistant-bus-application.yml
 eureka:
   client:
     serviceUrl:

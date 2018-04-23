@@ -6,7 +6,9 @@ spring:
       discovery:
         enabled: true
         service-id: snacks-assistant-config
-      profile: application   # snacks-assistant-consumer-application.yml
+      profile: application   # snacks-assistant-user-application.yml
+server:
+  port: 8081
 eureka:
   client:
     serviceUrl:

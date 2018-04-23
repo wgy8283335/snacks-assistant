@@ -1,22 +1,11 @@
-#########################################################Spring#########################################################
-#spring:
-#    application:
-#        name: snacks-assistant-consumer
-#server:
-#  port: 8083
 ##########################################################eureka########################################################
 eureka:
   client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
     registryFetchIntervalSeconds: 30 #30秒抓取一次注册信息
-      #defaultZone: http://localhost:8761/eureka/
-
 ##########################################################logging#######################################################
 logging:
   level:
      com.netflix: DEBUG
-
 #########################################################fegin##########################################################
 feign:
   client:
