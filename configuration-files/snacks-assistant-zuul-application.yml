@@ -2,10 +2,9 @@
 ##########################################################zuul##########################################################
 zuul:
   routes:
-    sale:
+    snacks-assistant-consumer:
       path: /snacks-assistant-consumer/*
       serviceId: snacks-assistant-consumer
-
 ##########################################################eureka########################################################
 eureka:
   client:
