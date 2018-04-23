@@ -40,3 +40,16 @@ hystrix:
   threadpool:
     default:
       coreSize: 10  #并发执行的最大线程数，默认10
+#########################################################endpoints######################################################
+## 开启消息跟踪
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
