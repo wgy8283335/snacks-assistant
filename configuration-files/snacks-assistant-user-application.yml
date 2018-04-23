@@ -30,10 +30,10 @@ spring:
     username: guest
     password: guest
 ########################################################log4j2##########################################################
-asyncLogger:
-  ringBufferSize: 10000
-asyncLoggerConfig:
-  ringBufferSize: 10000
-log4j2:
-  asyncQueueFullPolicy: Discard
-  discardThreshold: DEBUG
+#asyncLogger:
+#  ringBufferSize: 10000
+#asyncLoggerConfig:
+#  ringBufferSize: 10000
+#log4j2:
+#  asyncQueueFullPolicy: Discard
+#  discardThreshold: DEBUG
