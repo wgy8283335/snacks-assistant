@@ -34,3 +34,7 @@ spring:
     port: 5672
     username: guest
     password: guest
+#############################################################logging####################################################
+logging:
+  level:
+    com.netflix: WARN
