@@ -8,7 +8,7 @@ spring:
     name: era
     url: jdbc:mysql://192.168.244.133:3306/snacks_user_info?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
     username: root
-    password: 2zhlmcl!HBLSQT
+    password: 2zhlmcl!HBLSQT1
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
 ##############################################################eureka####################################################
