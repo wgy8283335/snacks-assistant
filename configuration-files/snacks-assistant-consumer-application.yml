@@ -5,7 +5,9 @@ eureka:
 ##########################################################logging#######################################################
 logging:
   level:
-     com.netflix: DEBUG
+    root: INFO
+    com.netflix: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
 #########################################################fegin##########################################################
 feign:
   client:
