@@ -15,7 +15,10 @@ eureka:
 #############################################################logging####################################################
 logging:
   level:
-    com.netflix: DEBUG
+    #root: DEBUG
+    #com.netflix: DEBUG
+    #org.springframework.cloud.sleuth: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
 #########################################################endpoints######################################################
 ## 开启消息跟踪
 spring:
