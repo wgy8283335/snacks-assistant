@@ -8,6 +8,9 @@ logging:
     root: DEBUG
     com.netflix: DEBUG
     org.springframework.cloud.sleuth: DEBUG
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411
 #########################################################fegin##########################################################
 feign:
   client:
