@@ -46,3 +46,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+spring:
+    sleuth:
+      sampler:
+        probability: 1 #sleuth采样比例
+      http:
+        legacy:
+          enabled: true
+    zipkin:
+      enabled: true
+      base-url: http://localhost:9411
