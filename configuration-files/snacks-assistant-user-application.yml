@@ -15,7 +15,7 @@ eureka:
 #############################################################logging####################################################
 logging:
   level:
-    #root: DEBUG
+    root: DEBUG
     #com.netflix: DEBUG
     org.springframework.cloud.sleuth: DEBUG
     #org.springframework.web.servlet.DispatcherServlet: DEBUG
