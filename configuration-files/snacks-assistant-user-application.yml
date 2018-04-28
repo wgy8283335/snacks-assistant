@@ -17,8 +17,8 @@ logging:
   level:
     #root: DEBUG
     #com.netflix: DEBUG
-    #org.springframework.cloud.sleuth: DEBUG
-    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+    #org.springframework.web.servlet.DispatcherServlet: DEBUG
 #########################################################endpoints######################################################
 ## 开启消息跟踪
 spring:
@@ -49,3 +49,14 @@ spring:
     password: 2zhlmcl!HBLSQT
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+########################################################################################################################
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0 #sleuth采样比例
+    #http:
+    #  legacy:
+    #    enabled: true
+  zipkin:
+    baseUrl: http://localhost:9411
+    enabled: true

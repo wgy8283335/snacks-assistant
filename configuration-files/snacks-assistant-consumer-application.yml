@@ -3,11 +3,11 @@ eureka:
   client:
     registryFetchIntervalSeconds: 30 #30秒抓取一次注册信息
 ##########################################################logging#######################################################
-#logging:
-#  level:
+logging:
+  level:
 #    root: DEBUG
 #    com.netflix: DEBUG
-#    org.springframework.cloud.sleuth: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
 #    org.springframework.web.servlet.DispatcherServlet: DEBUG
 
 #########################################################fegin##########################################################
