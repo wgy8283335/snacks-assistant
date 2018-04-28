@@ -49,9 +49,9 @@ spring:
     #http:
     #  legacy:
     #    enabled: true
-  zipkin:
-    base-url: http://127.0.0.1:9411
-    enabled: true
+  #zipkin:
+    #base-url: http://127.0.0.1:9411
+    #enabled: true
 ########################################################datasource######################################################
 spring:
   datasource:
