@@ -40,15 +40,7 @@ spring:
 #log4j2:
 #  asyncQueueFullPolicy: Discard
 #  discardThreshold: DEBUG
-########################################################datasource######################################################
-spring:
-  datasource:
-    name: era
-    url: jdbc:mysql://192.168.244.133:3306/snacks_user_info?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
-    username: root
-    password: 2zhlmcl!HBLSQT
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
 ########################################################################################################################
 spring:
   sleuth:
@@ -58,5 +50,14 @@ spring:
     #  legacy:
     #    enabled: true
   zipkin:
-    baseUrl: http://localhost:9411
+    base-url: http://127.0.0.1:9411
     enabled: true
+########################################################datasource######################################################
+spring:
+  datasource:
+    name: era
+    url: jdbc:mysql://192.168.244.133:3306/snacks_user_info?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: 2zhlmcl!HBLSQT
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
