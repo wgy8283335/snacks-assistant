@@ -6,7 +6,7 @@ spring:
       discovery:
         enabled: true
         service-id: snacks-assistant-config
-      profile: application   # snacks-assistant-consumer-application.yml
+      profile: application # snacks-assistant-consumer-application.yml
 server:
   port: 8083
 eureka:
@@ -25,3 +25,9 @@ management:
     web:
       exposure:
         include: refresh,health
+
+#############################################################logging####################################################
+logbook.write.level: TRACE
+logbook.format.style: http
+
+logging.config=classpath: log4j2.xml

@@ -6,7 +6,15 @@ spring:
       discovery:
         enabled: true
         service-id: snacks-assistant-config
-      profile: application   # snacks-assistant-user-application.yml
+      profile: application  # snacks-assistant-user-application.yml
+  sleuth:
+    sampler:
+      probability: 1 #sleuth采样比例
+    http:
+      legacy:
+        enabled: true
+  zipkin:
+    baseUrl: http://localhost:9411
 server:
   port: 8081
 eureka:
@@ -18,8 +26,10 @@ management:
   endpoint:
     refresh:
       enabled: true
+    health:
+      enabled: true
 management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: refresh,health

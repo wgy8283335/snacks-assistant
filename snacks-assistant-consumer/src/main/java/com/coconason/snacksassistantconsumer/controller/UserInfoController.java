@@ -4,6 +4,9 @@ import com.coconason.snacksassistantconsumer.constant.ErrorCode;
 import com.coconason.snacksassistantconsumer.model.SnacksResult;
 import com.coconason.snacksassistantconsumer.service.IUserInfoService;
 import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
+import io.swagger.annotations.ApiOperation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -19,9 +22,13 @@ public class UserInfoController {
     @Autowired
     IUserInfoService userInfoService;
 
+    private static final Logger LOG = LogManager.getLogger(UserInfoController.class);
+
+    @ApiOperation(value="Query the information of the user", notes="")
     @RequestMapping(value="/get_user_info/{id}",method = RequestMethod.GET)
     public SnacksResult getUserInfoVo(@PathVariable Long id){
         try{
+            LOG.info("THIS IS JUST A TEST");
             SnacksResult snacksResult = userInfoService.getUserInfoVo(id);
             return snacksResult;
         }catch (Exception exception){
@@ -29,9 +36,11 @@ public class UserInfoController {
         }
     }
 
+    @ApiOperation(value="Modify the information of the user", notes="")
     @RequestMapping(value="/set_user_info",method = RequestMethod.POST)
     public SnacksResult setUserInfoVo(@RequestBody UserInfoVo userInfoVo){
         try{
+
             SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
             return snacksResult;
         }catch (Exception exception){
@@ -39,10 +48,10 @@ public class UserInfoController {
         }
     }
 
-    @Autowired
+/*     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @GetMapping("/list")
+   @GetMapping("/list")
     @ResponseBody
     public String serviceCount() {
         List<String> names = discoveryClient.getServices();
@@ -61,5 +70,5 @@ public class UserInfoController {
             System.out.println(ins.getPort() + "---" + name);
         }
         return "";
-    }
+    }*/
 }
