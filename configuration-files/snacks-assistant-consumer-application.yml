@@ -49,7 +49,7 @@ spring:
 spring:
     sleuth:
       sampler:
-        probability: 1 #sleuth采样比例
+        probability: 1.0 #sleuth采样比例
       http:
         legacy:
           enabled: true
