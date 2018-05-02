@@ -32,6 +32,7 @@ spring:
     port: 5672
     username: guest
     password: guest
+
 ########################################################log4j2##########################################################
 #asyncLogger:
 #  ringBufferSize: 10000
@@ -52,6 +53,8 @@ spring:
   zipkin:
     #base-url: http://127.0.0.1:9411
     enabled: true
+    rabbitmq:
+      queue: zipkin
 ########################################################datasource######################################################
 spring:
   datasource:
