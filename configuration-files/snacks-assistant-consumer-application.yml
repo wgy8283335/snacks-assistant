@@ -52,4 +52,4 @@ spring:
   zipkin:
     enabled: true
     rabbitmq:
-      queue: sleuth.sleuth
+      queue: zipkin
