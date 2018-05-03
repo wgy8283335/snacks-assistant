@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://192.168.244.133:3306/snacks_user_info?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
     username: root
     #password: {cipher}AQA5ZYmYhsZvC5HF+ottdbMvyJXtXb4gWwWIR4FK9GJmwRUnSmg/Ldco9gJC+5yn5ek6jiFvE3l3RoDMgVMQNyZplLYVP2+uyHb9SqPDD/2gq0bLqgK01i9lrj9SuvU80ZJSuNDFGiesb8/P94+Bylg5vGKlDj1CLd2EvDwSyr4ZnqdkAi85LhJKDA9I9hHjyB3+fIQGI6nFPYI075btBvwTYd1/2fhJcNISMU1nNiEidiGlltg37jL+KRw1QZJI1nKvz2th4d5pXyXpZyYayR+qRjQg3iTvtgAwGL6jYRuIgb7eeJqxsKRcYg8KrIWS7mglo9mHeEL6yOlvyyKkBbz4BqiTLCHIohlPGCzic/U4R8DUNu4Cnp7s/2KUmRESpiU=
-    password:2zhlmcl!HBLSQT
+    password: 2zhlmcl!HBLSQT
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
 ##############################################################eureka####################################################
