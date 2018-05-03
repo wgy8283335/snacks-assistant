@@ -5,12 +5,8 @@ eureka:
 ##########################################################logging#######################################################
 logging:
   level:
-    root: DEBUG
-#    com.netflix: DEBUG
-    org.springframework.cloud.sleuth: DEBUG
-    org.springframework.cloud.spring-cloud-starter-stream-rabbit: DEBUG
-#    org.springframework.web.servlet.DispatcherServlet: DEBUG
-
+    root: INFO
+    #com.netflix: DEBUG
 #########################################################fegin##########################################################
 feign:
   client:
@@ -34,18 +30,14 @@ hystrix:
   threadpool:
     default:
       coreSize: 10  #并发执行的最大线程数，默认10
-#########################################################endpoints######################################################
+#######################################################config_refresh###################################################
 spring:
   cloud:
     bus:
       trace:
-        enabled: true
+        enabled: true  #跟踪总线事件
+#######################################################sleuth_zipkin###################################################
 spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
   sleuth:
     sampler:
       probability: 1.0 #sleuth采样比例
@@ -53,3 +45,11 @@ spring:
     enabled: true
     rabbitmq:
       queue: zipkin
+###########################################################RabbitMQ#####################################################
+#设置MQ用于监听配置刷新和发送sleuth跟踪信息
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

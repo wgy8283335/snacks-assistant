@@ -24,33 +24,26 @@ logging:
   level:
     root: INFO
     #com.netflix: DEBUG
-    #org.springframework.cloud.sleuth: DEBUG
-    #org.springframework.cloud.spring-cloud-starter-stream-rabbit: DEBUG
-    #org.springframework.web.servlet.DispatcherServlet: DEBUG
-#########################################################endpoints######################################################
-## 开启消息跟踪
+#######################################################config_refresh###################################################
 spring:
   cloud:
     bus:
       trace:
-        enabled: true
+        enabled: true  #跟踪总线事件
+#######################################################sleuth_zipkin###################################################
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0 #sleuth采样比例
+  zipkin:
+    enabled: true
+    rabbitmq:
+      queue: zipkin
+###########################################################RabbitMQ#####################################################
+#设置MQ用于监听配置刷新和发送sleuth跟踪信息
 spring:
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
-
-########################################################################################################################
-spring:
-  sleuth:
-    sampler:
-      probability: 1.0 #sleuth采样比例
-    #http:
-    #  legacy:
-    #    enabled: true
-  zipkin:
-    #base-url: http://127.0.0.1:9411
-    enabled: true
-    rabbitmq:
-      queue: zipkin
