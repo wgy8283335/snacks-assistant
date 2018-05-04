@@ -1,0 +1,6 @@
+encrypt:
+  keyStore:
+    location: classpath:/snacks.jks  # keystroe位置
+    password:  Cc8265739                  # 密钥库的密码
+    alias: snacksKey                       # 密钥对的别名
+    secret: Cc8265739                       # 密钥口令
