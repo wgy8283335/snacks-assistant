@@ -10,7 +10,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: bus-refresh
+        include: bus-refresh,health,info
 eureka:
   client:
     serviceUrl:
