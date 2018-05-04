@@ -1,6 +1,6 @@
 spring:
-  application:
-    name: snacks-assistant-bus
+  #application:
+    #name: snacks-assistant-bus
   rabbitmq:
     host: localhost
     port: 5672
@@ -11,6 +11,8 @@ management:
     web:
       exposure:
         include: bus-refresh,health,info
+server:
+  port: 10000
 eureka:
   client:
     serviceUrl:
