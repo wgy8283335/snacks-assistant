@@ -5,7 +5,7 @@ spring:
     host: localhost
     port: 5672
     username: guest
-    password: guest
+    password: '{cipher}AQA+bZ3+hq4Zk2gVksTeLVREvBzVxP0ZNrtwd//afSENeiL5KPZWkYbOuJNq//zY6EhRwUp3CHtuUveonzWVvSOP5K1XCmYNp6HuepRx0D0urOqXmQU5DTnuIIVIG3UtA9x4U5slISgRU5cQJGJBLwnfGXsHhN4B/wWl5DGRqtPDCs3FAnglPpdYJEr8VqvmHwV9srhRLkY21JHNXa+B78xdBGvyPPPzWj+ObpWY/jBo/w69nzzLjnCvscbkJyrCSGxkekXbWX0HZSRy576sDPPtUreUjuniWwEm3SoK05Q/phlcLq9aK6D9LoQ4nHWpfaUW7egTaeknJdNfSZLbFM+VeWjRPMRoPBO+yMi7AvR3+4uiC0UDzyXheYrPrdGDJvI='
 management:
   endpoints:
     web:
