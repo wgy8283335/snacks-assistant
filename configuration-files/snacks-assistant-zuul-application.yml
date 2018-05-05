@@ -23,6 +23,9 @@ eureka:
 #    web:
 #      exposure:
 #        include: info,health,routes
+management:
+  security:
+    enable: false
 #######################################################config_refresh###################################################
 spring:
   cloud:
