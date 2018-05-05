@@ -14,15 +14,15 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
 #############################################################routes####################################################
-#management:
-  #endpoint:
-    #routes:
-      #enabled: true
-    #health:
-      #enabled: true
-    #web:
-    #  exposure:
-    #    include: info,health,routes
+management:
+  endpoint:
+    routes:
+      enabled: true
+    health:
+      enabled: true
+    web:
+      exposure:
+        include: info,health,routes
 #######################################################config_refresh###################################################
 spring:
   cloud:
