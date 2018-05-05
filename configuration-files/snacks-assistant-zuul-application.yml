@@ -20,11 +20,11 @@ eureka:
 #      enabled: true
 #    health:
 #      enabled: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: info,health,routes
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: info,health,routes
 #management:
 #  security:
 #    enable: false
