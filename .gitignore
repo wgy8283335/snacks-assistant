@@ -19,4 +19,7 @@ snacks-assistant-config/mvnw.cmd
 snacks-assistant-bus/.mvn/
 snacks-assistant-bus/mvnw
 snacks-assistant-bus/mvnw.cmd
+snacks-assistant-zipkin/.mvn/
+snacks-assistant-zipkin/mvnw
+snacks-assistant-zipkin/mvnw.cmd
 snacks-assistant.iml
