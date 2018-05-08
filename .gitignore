@@ -1,8 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 .idea/*
-configuration-files
-configuration-files/*
 logs
 logs/*
 snacks-assistant-consumer/.mvn/

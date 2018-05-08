@@ -7,6 +7,9 @@ zuul:
     snacks-assistant-consumer:
       path: /snacks-assistant-consumer/*
       serviceId: snacks-assistant-consumer
+    snacks-assistant-user:
+      path: /snacks-assistant-user/*
+      serviceId: snacks-assistant-user
 ##########################################################eureka########################################################
 eureka:
   client:
