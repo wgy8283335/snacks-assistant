@@ -11,11 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.coconason.snacksassistantuser.service.IUserInfoService;
 
+import java.util.Date;
+
 @Service
 public class UserInfoServiceImpl implements IUserInfoService{
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Override
+    public SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception{
+        UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
+        Date now = new Date();
+        userInfo.setCreateTime(now);
+        userInfo.setUpdateTime(now);
+        userInfo.setDeleted((byte)0);
+        if (userInfoMapper.insert(userInfo)>0){
+            return SnacksResult.ok();
+        }else{
+            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
     @Override
     public UserInfoVo getUserInfoVo(long id) throws Exception{
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
@@ -47,14 +62,5 @@ public class UserInfoServiceImpl implements IUserInfoService{
             return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
-    @Override
-    public SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception{
-        UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
-        userInfoMapper.insert(userInfo);
-        if (userInfoMapper.insert(userInfo)>0){
-            return SnacksResult.ok();
-        }else{
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
-        }
-    }
+
 }

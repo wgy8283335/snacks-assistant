@@ -22,7 +22,7 @@ public class UserInfoController {
     private static final Logger LOG = LogManager.getLogger(UserInfoController.class);
 
     @ApiOperation(value="Add the information of the user", notes="")
-    @RequestMapping(value="/add_user_info",method = RequestMethod.POST)
+    @RequestMapping(value="/add_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult addUserInfoVo(@RequestBody UserInfoVo userInfoVo){
         try{
             SnacksResult snacksResult = userInfoService.addUserInfoVo(userInfoVo);
@@ -33,7 +33,7 @@ public class UserInfoController {
     }
 
     @ApiOperation(value="Delete the information of the user", notes="")
-    @RequestMapping(value="/delete_user_info",method = RequestMethod.POST)
+    @RequestMapping(value="/delete_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult deleteUserInfoVo(@RequestBody UserInfoVo userInfoVo){
         try{
             SnacksResult snacksResult = userInfoService.deleteUserInfoVo(userInfoVo);
@@ -55,7 +55,7 @@ public class UserInfoController {
     }
 
     @ApiOperation(value="Modify the information of the user", notes="")
-    @RequestMapping(value="/set_user_info",method = RequestMethod.POST)
+    @RequestMapping(value="/set_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult setUserInfoVo(@RequestBody UserInfoVo userInfoVo){
         try{
             SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
