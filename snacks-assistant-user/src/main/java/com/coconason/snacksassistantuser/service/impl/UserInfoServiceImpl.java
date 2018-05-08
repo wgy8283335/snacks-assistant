@@ -23,12 +23,35 @@ public class UserInfoServiceImpl implements IUserInfoService{
         return userInfoVo;
     }
     @Override
+    public SnacksResult deleteUserInfoVo(UserInfoVo userInfoVo) throws Exception{
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
+        userInfoCriteria.andIdEqualTo(userInfoVo.getId());
+        UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
+        userInfo.setDeleted((byte)1);//设置删除
+        if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
+            return SnacksResult.ok();
+        }else{
+            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
+    @Override
     public SnacksResult setUserInfoVo(UserInfoVo userInfoVo) throws Exception{
         UserInfoExample userInfoExample = new UserInfoExample();
         UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
         userInfoCriteria.andIdEqualTo(userInfoVo.getId());
         UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
         if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
+            return SnacksResult.ok();
+        }else{
+            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
+    @Override
+    public SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception{
+        UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
+        userInfoMapper.insert(userInfo);
+        if (userInfoMapper.insert(userInfo)>0){
             return SnacksResult.ok();
         }else{
             return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
