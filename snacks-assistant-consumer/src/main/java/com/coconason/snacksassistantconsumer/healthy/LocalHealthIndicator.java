@@ -1,6 +1,6 @@
-package com.coconason.snacksassistantuser.healthy;
+package com.coconason.snacksassistantconsumer.healthy;
 
-import com.coconason.snacksassistantuser.controller.UserInfoController;
+import com.coconason.snacksassistantconsumer.controller.UserInfoController;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.actuate.health.Status;

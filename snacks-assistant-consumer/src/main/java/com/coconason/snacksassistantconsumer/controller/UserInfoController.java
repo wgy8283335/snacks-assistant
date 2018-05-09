@@ -17,14 +17,13 @@ public class UserInfoController {
 
     @Autowired
     IUserInfoService userInfoService;
-
+    //Get log4j2 object
     private static final Logger LOG = LogManager.getLogger(UserInfoController.class);
 
     @ApiOperation(value="Query the information of the user", notes="")
     @RequestMapping(value="/get_user_info/{id}",method = RequestMethod.GET)
     public SnacksResult getUserInfoVo(@PathVariable Long id){
         try{
-            LOG.info("THIS IS JUST A TEST");
             SnacksResult snacksResult = userInfoService.getUserInfoVo(id);
             return snacksResult;
         }catch (Exception exception){
@@ -44,7 +43,9 @@ public class UserInfoController {
         }
     }
 
-/*     @Autowired
+/*
+    //查看从eureka获得的服务列表
+    @Autowired
     private DiscoveryClient discoveryClient;
 
    @GetMapping("/list")
@@ -57,6 +58,7 @@ public class UserInfoController {
         }
         return "";
     }
+    //从配置文件中读取meta的部分设置的参数
     @GetMapping("/meta")
     @ResponseBody
     public String getMetadata() {
@@ -66,5 +68,13 @@ public class UserInfoController {
             System.out.println(ins.getPort() + "---" + name);
         }
         return "";
-    }*/
+    }
+*/
+    //手动设置数据库连接状态，用于模仿数据库链接不通的情况。
+    //LocalHealthCheckHandler将Eureka上的应用状态改为相应状态。
+    public static boolean canVisitDb = true;
+//    @RequestMapping(value = "/db/{can}", method = RequestMethod.GET)
+//    public void setDb(@PathVariable boolean can) {
+//        canVisitDb = can;
+//    }
 }

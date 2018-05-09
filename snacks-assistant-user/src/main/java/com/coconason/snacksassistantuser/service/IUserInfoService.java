@@ -7,7 +7,7 @@ public interface IUserInfoService {
 
     SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception;
 
-    SnacksResult deleteUserInfoVo(UserInfoVo userInfoVo) throws Exception;
+    SnacksResult deleteUserInfoVo(Long id) throws Exception;
 
     SnacksResult setUserInfoVo(UserInfoVo userInfoVo) throws Exception;
 

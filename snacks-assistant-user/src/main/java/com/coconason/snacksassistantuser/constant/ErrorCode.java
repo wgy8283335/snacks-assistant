@@ -2,7 +2,10 @@ package com.coconason.snacksassistantuser.constant;
 
 
 public enum ErrorCode {
-	OK(200),
+	//记录不存在
+	RECORD_NOT_EXIST_ERROR(100002),
+	//参数有误
+	PARAM_ERROR(100001),
 	//系统错误
 	SYS_ERROR(100000);
 

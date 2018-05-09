@@ -18,36 +18,32 @@ public class UserInfoServiceImpl implements IUserInfoService{
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    private final byte NO = 0;
+    private final byte YES = 1;
+
     @Override
     public SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception{
         UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
         Date now = new Date();
         userInfo.setCreateTime(now);
         userInfo.setUpdateTime(now);
-        userInfo.setDeleted((byte)0);
-        if (userInfoMapper.insert(userInfo)>0){
+        userInfo.setDeleted(NO);
+        if (userInfoMapper.insertSelective(userInfo)>0){
             return SnacksResult.ok();
         }else{
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
-    public UserInfoVo getUserInfoVo(long id) throws Exception{
-        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
-        UserInfoVo userInfoVo = CastUtil.UserInfoToUserInfoVo(userInfo);
-        return userInfoVo;
-    }
-    @Override
-    public SnacksResult deleteUserInfoVo(UserInfoVo userInfoVo) throws Exception{
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
-        userInfoCriteria.andIdEqualTo(userInfoVo.getId());
-        UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
-        userInfo.setDeleted((byte)1);//设置删除
-        if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
+    public SnacksResult deleteUserInfoVo(Long id) throws Exception{
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(id);
+        userInfo.setDeleted(YES);
+        if (userInfoMapper.updateByPrimaryKeySelective(userInfo)>0){
             return SnacksResult.ok();
         }else{
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
@@ -56,11 +52,15 @@ public class UserInfoServiceImpl implements IUserInfoService{
         UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
         userInfoCriteria.andIdEqualTo(userInfoVo.getId());
         UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
-        if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
+         if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
             return SnacksResult.ok();
         }else{
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
-
+    @Override
+    public UserInfoVo getUserInfoVo(long id) throws Exception{
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
+        return CastUtil.UserInfoToUserInfoVo(userInfo);
+    }
 }

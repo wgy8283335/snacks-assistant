@@ -1,5 +1,9 @@
 package com.coconason.snacksassistantuser.vo;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +14,7 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+
     private Long id;
 
     /**
@@ -18,6 +23,7 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+    @Pattern(regexp = "^[0-9]*(\\|[0-9]*)*")
     private String favoriteFoodIdList;
 
     /**
@@ -26,6 +32,7 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+    @Pattern(regexp = "^[0-9]*(\\|[0-9]*)*")
     private String dislikeFoodIdList;
 
     /**
@@ -34,6 +41,8 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+    @Max(value = 50000)
+    @Min(value = 0)
     private Integer consumptionUpperLimit;
 
     /**
@@ -42,6 +51,8 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+    @Max(value = 5000)
+    @Min(value = 0)
     private Integer consumptionLowerLimit;
 
     /**

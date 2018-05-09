@@ -1,6 +1,5 @@
 package com.coconason.snacksassistantuser.controller;
 
-
 import com.coconason.snacksassistantuser.constant.ErrorCode;
 import com.coconason.snacksassistantuser.model.SnacksResult;
 import com.coconason.snacksassistantuser.service.IUserInfoService;
@@ -10,7 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @RestController
 public class UserInfoController {
@@ -23,7 +24,10 @@ public class UserInfoController {
 
     @ApiOperation(value="Add the information of the user", notes="")
     @RequestMapping(value="/add_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SnacksResult addUserInfoVo(@RequestBody UserInfoVo userInfoVo){
+    public SnacksResult addUserInfoVo(@RequestBody @Valid UserInfoVo userInfoVo,BindingResult result){
+        if(result.hasErrors()){
+            return SnacksResult.build(ErrorCode.PARAM_ERROR.value(),ErrorCode.PARAM_ERROR.msg());
+        }
         try{
             SnacksResult snacksResult = userInfoService.addUserInfoVo(userInfoVo);
             return snacksResult;
@@ -34,12 +38,26 @@ public class UserInfoController {
 
     @ApiOperation(value="Delete the information of the user", notes="")
     @RequestMapping(value="/delete_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SnacksResult deleteUserInfoVo(@RequestBody UserInfoVo userInfoVo){
+    public SnacksResult deleteUserInfoVo(@RequestParam Long id){
         try{
-            SnacksResult snacksResult = userInfoService.deleteUserInfoVo(userInfoVo);
+            SnacksResult snacksResult = userInfoService.deleteUserInfoVo(id);
             return snacksResult;
         }catch (Exception exception){
             return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
+
+    @ApiOperation(value="Modify the information of the user", notes="")
+    @RequestMapping(value="/set_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult setUserInfoVo(@RequestBody@Valid UserInfoVo userInfoVo,BindingResult result) {
+        if(result.hasErrors()){
+            return SnacksResult.build(ErrorCode.PARAM_ERROR.value(),ErrorCode.PARAM_ERROR.msg());
+        }
+        try {
+            SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
+            return snacksResult;
+        }catch (Exception exception) {
+            return SnacksResult.build(ErrorCode.SYS_ERROR.value(), ErrorCode.SYS_ERROR.msg());
         }
     }
 
@@ -53,22 +71,4 @@ public class UserInfoController {
             return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
-
-    @ApiOperation(value="Modify the information of the user", notes="")
-    @RequestMapping(value="/set_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SnacksResult setUserInfoVo(@RequestBody UserInfoVo userInfoVo){
-        try{
-            SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
-            return snacksResult;
-        }catch (Exception exception){
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
-        }
-    }
-
-      public static boolean canVisitDb = true;
-
-/*    @RequestMapping(value = "/db/{can}", method = RequestMethod.GET)
-    public void setDb(@PathVariable boolean can) {
-        canVisitDb = can;
-    }*/
 }
