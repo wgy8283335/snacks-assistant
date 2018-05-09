@@ -1,6 +1,6 @@
 package com.coconason.snacksassistantconsumer.service;
 
-import com.coconason.snacksassistantconsumer.model.SnacksResult;
+import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
 
 public interface IUserInfoService {

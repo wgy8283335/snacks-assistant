@@ -24,4 +24,6 @@ snacks-assistant-bus/mvnw.cmd
 snacks-assistant-zipkin/.mvn/
 snacks-assistant-zipkin/mvnw
 snacks-assistant-zipkin/mvnw.cmd
+snacks-assistant-common/*.iml
 snacks-assistant.iml
+

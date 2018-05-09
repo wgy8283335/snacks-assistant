@@ -1,7 +1,7 @@
 package com.coconason.snacksassistantuser.controller;
 
-import com.coconason.snacksassistantuser.constant.ErrorCode;
-import com.coconason.snacksassistantuser.model.SnacksResult;
+import com.coconason.snacksassistantcommon.constant.ErrorCode;
+import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantuser.service.IUserInfoService;
 import com.coconason.snacksassistantuser.vo.UserInfoVo;
 import io.swagger.annotations.ApiOperation;

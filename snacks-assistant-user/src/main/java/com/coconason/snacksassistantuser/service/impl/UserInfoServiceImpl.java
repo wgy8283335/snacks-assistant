@@ -1,9 +1,9 @@
 package com.coconason.snacksassistantuser.service.impl;
 
 import com.coconason.snacksassistantuser.cast.CastUtil;
-import com.coconason.snacksassistantuser.constant.ErrorCode;
+import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantuser.dao.UserInfoMapper;
-import com.coconason.snacksassistantuser.model.SnacksResult;
+import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantuser.po.UserInfo;
 import com.coconason.snacksassistantuser.po.UserInfoExample;
 import com.coconason.snacksassistantuser.vo.UserInfoVo;

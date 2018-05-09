@@ -35,6 +35,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.coconason</groupId>
+			<artifactId>snacks-assistant-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 		<!--全链路跟踪服务+日志-->
 		<dependency> <!-- exclude掉spring-boot的默认log配置 -->
 			<groupId>org.springframework.boot</groupId>
