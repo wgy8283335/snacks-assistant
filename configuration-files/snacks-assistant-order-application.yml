@@ -1,0 +1,53 @@
+###########################################################port#########################################################
+server:
+  port: 8084
+###################################################mybatis_config#######################################################
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+##############################################################eureka####################################################
+eureka:
+  client:
+    instanceInfoReplicationIntervalSeconds: 10 #这里是设置多久更新一次健康状态到Eureka服务器上
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 5 #健康相关配置，心跳监测5秒一次。
+    leaseExpirationDurationInSeconds: 10 #如果超过10秒没有给服务器发送心跳请求，则服务器将剔除该实例
+#############################################################logging####################################################
+logging:
+  level:
+    root: INFO
+    #com.netflix: DEBUG
+#######################################################config_refresh###################################################
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true  #跟踪总线事件
+#######################################################sleuth_zipkin###################################################
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0 #sleuth采样比例
+  zipkin:
+    enabled: true
+    rabbitmq:
+      queue: zipkin
+###########################################################RabbitMQ#####################################################
+#设置MQ用于监听配置刷新和发送sleuth跟踪信息
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+########################################################datasource######################################################
+#这部分需要放在后面才行
+spring:
+  datasource:
+    name: era
+    url: jdbc:mysql://192.168.244.133:3306/sa_order?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: '{cipher}AQBNTTDwhRFJFh2wnghvKG54PZ7EHeAoa2248PWm8zJ2qyukjWz3wOwAdeZxyGXPt+GwmvhKkPM27MjzOOM3yhnHAJb4z2xEfVr5vve/t9V0z+7f8n4kTX5uBlLK5EtpiI3DcuQxJCgs7LsnR3DTrnZ/EXOVcpZqhvhZpAz+8JOdWRS22ddi792GeSaY7cd5KPn3XNoPR5/f4VtRxUYI9moCZqLHTdDIVgo8sINgcOh/6u2PJ8L1YRl4ECJqOFf61oikvLVwmr7zEuS0mJ5E5bOgrMgczrWk8hYRefvg23BqCqOnp+Yn2/eLYBLeDzWxYhHSoRNeZd4dorvkGV+EIGp1EDgTlsaA/5HFFZkdbJdTBplvHqexMDJ97bb5741s42M='
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
