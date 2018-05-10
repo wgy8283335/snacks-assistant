@@ -61,6 +61,7 @@ public class UserInfoVo implements Serializable {
      *
      * @mbggenerated Sun Apr 08 16:35:09 CST 2018
      */
+    @Pattern(regexp = "^\\{.*\\}$")
     private String address;
 
     /**
