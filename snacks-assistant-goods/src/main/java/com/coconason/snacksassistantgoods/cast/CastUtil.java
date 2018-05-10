@@ -10,7 +10,7 @@ public class CastUtil {
 
 	public static SnacksInfoVo SnacksInfoToSnacksInfoVo(SnacksInfo snacksInfo){
 		SnacksInfoVo snacksInfoVo = new SnacksInfoVo();
-		snacksInfoVo.setBatcheNum(snacksInfo.getBatcheNum());
+		snacksInfoVo.setBatchsNum(snacksInfo.getBatchsNum());
 		snacksInfoVo.setCode(snacksInfo.getCode());
 		snacksInfoVo.setDes(snacksInfo.getCode());
 		snacksInfoVo.setId(snacksInfo.getId());
@@ -28,7 +28,7 @@ public class CastUtil {
 	}	
 	public static SnacksInfo SnacksInfoVoToSnacksInfo(SnacksInfoVo snacksInfoVo){
 		SnacksInfo snacksInfo = new SnacksInfo();
-		snacksInfo.setBatcheNum(snacksInfoVo.getBatcheNum());
+		snacksInfo.setBatchsNum(snacksInfoVo.getBatchsNum());
 		snacksInfo.setCode(snacksInfoVo.getCode());
 		snacksInfo.setDes(snacksInfoVo.getCode());
 		snacksInfo.setId(snacksInfoVo.getId());

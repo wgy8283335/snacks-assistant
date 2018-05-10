@@ -25,5 +25,8 @@ snacks-assistant-zipkin/.mvn/
 snacks-assistant-zipkin/mvnw
 snacks-assistant-zipkin/mvnw.cmd
 snacks-assistant-common/*.iml
+snacks-assistant-goods/.mvn/
+snacks-assistant-goods/mvnw
+snacks-assistant-goods/mvnw.cmd
 snacks-assistant.iml
 

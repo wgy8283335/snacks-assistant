@@ -52,6 +52,8 @@ public class UserInfoServiceImpl implements IUserInfoService{
         UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
         userInfoCriteria.andIdEqualTo(userInfoVo.getId());
         UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
+        Date now = new Date();
+        userInfo.setUpdateTime(now);
          if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
             return SnacksResult.ok();
         }else{
