@@ -6,4 +6,4 @@ spring:
       discovery:
         enabled: true
         service-id: snacks-assistant-config
-      profile: application  # snacks-assistant-user-application.yml
+      profile: application  # snacks-assistant-account-application.yml
