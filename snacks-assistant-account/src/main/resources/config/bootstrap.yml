@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: snacks-assistant-account
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: snacks-assistant-config
+      profile: application  # snacks-assistant-user-application.yml
