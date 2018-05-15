@@ -1,0 +1,60 @@
+#########################################################port###########################################################
+server:
+  port: 8085
+##########################################################eureka########################################################
+eureka:
+  client:
+    registryFetchIntervalSeconds: 30 #30秒抓取一次注册信息
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+##########################################################logging#######################################################
+#logging:
+#  level:
+#    root: INFO
+    #com.netflix: DEBUG
+#########################################################fegin##########################################################
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+#########################################################hystrix########################################################
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000  #超时时间，超时后执行回退逻辑
+      circuitBreaker:
+        requestVolumeThreshold: 3   #请求3次内，超过一半的时候断路，则将断路器开启
+  threadpool:
+    default:
+      coreSize: 10  #并发执行的最大线程数，默认10
+#######################################################config_refresh###################################################
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true  #跟踪总线事件
+#######################################################sleuth_zipkin###################################################
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0 #sleuth采样比例
+  zipkin:
+    enabled: true
+    rabbitmq:
+      queue: zipkin
+###########################################################RabbitMQ#####################################################
+#设置MQ用于监听配置刷新和发送sleuth跟踪信息
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
