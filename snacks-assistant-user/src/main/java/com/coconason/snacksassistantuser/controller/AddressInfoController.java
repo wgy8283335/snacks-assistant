@@ -1,7 +1,6 @@
 package com.coconason.snacksassistantuser.controller;
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
-import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.coconason.snacksassistantuser.service.IAddressInfoService;
 import com.coconason.snacksassistantcommon.vo.AddressInfoVo;
 import io.swagger.annotations.ApiOperation;
