@@ -1,6 +1,7 @@
 package com.coconason.snacksassistantorder.exception;
 
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
+import com.coconason.snacksassistantcommon.model.ArgumentInvalidResult;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

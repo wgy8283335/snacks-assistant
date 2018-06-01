@@ -1,4 +1,4 @@
-package com.coconason.snacksassistantorder.exception;
+package com.coconason.snacksassistantcommon.model;
 
 public class ArgumentInvalidResult {
     private String field;

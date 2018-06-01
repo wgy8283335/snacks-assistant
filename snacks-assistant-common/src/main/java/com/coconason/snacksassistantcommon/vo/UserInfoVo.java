@@ -1,4 +1,4 @@
-package com.coconason.snacksassistantconsumer.vo;
+package com.coconason.snacksassistantcommon.vo;
 
 import java.io.Serializable;
 import java.util.Date;

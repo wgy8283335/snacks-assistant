@@ -2,6 +2,7 @@ package com.coconason.snacksassistantorder.service.impl;
 
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
+import com.coconason.snacksassistantcommon.util.SnowflakeIdWorker;
 import com.coconason.snacksassistantorder.cast.CastUtil;
 import com.coconason.snacksassistantorder.dao.OrderInfoMapper;
 import com.coconason.snacksassistantorder.po.OrderInfo;
@@ -9,6 +10,7 @@ import com.coconason.snacksassistantorder.po.OrderInfoExample;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
 import com.coconason.snacksassistantorder.vo.OrderInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,7 +20,10 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
 
     @Autowired
     private OrderInfoMapper orderInfoMapper;
-
+    @Value("${server-id}")
+    private long serverId;
+    @Value("${center-id}")
+    private long dataCenterId;
     private final byte NO = 0;
     private final byte YES = 1;
 
@@ -29,10 +34,11 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
         orderInfo.setCreateTime(now);
         orderInfo.setUpdateTime(now);
         orderInfo.setDeleted(NO);
+        orderInfo.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
         if (orderInfoMapper.insertSelective(orderInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
     @Override
@@ -41,9 +47,9 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
         orderInfo.setId(id);
         orderInfo.setDeleted(YES);
         if (orderInfoMapper.updateByPrimaryKeySelective(orderInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
@@ -55,9 +61,9 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
         Date now = new Date();
         orderInfo.setUpdateTime(now);
          if (orderInfoMapper.updateByExampleSelective(orderInfo,orderInfoExample)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override

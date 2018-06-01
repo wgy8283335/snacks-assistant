@@ -1,13 +1,15 @@
 package com.coconason.snacksassistantconsumer.service.impl;
 
-import com.coconason.snacksassistantconsumer.clinets.SnacksAssistantUserClient;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
+import com.coconason.snacksassistantconsumer.clinets.SnacksAssistantUserClient;
 import com.coconason.snacksassistantconsumer.service.IUserInfoService;
 import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -21,7 +23,7 @@ public class UserInfoServiceImpl implements IUserInfoService{
     @CacheResult
     @HystrixCommand
     public SnacksResult getUserInfoVo(Long id) throws Exception{
-        SnacksResult snacksResult = snacksAssistantUserClient.getUserInfoVo(id);
+        SnacksResult<UserInfoVo> snacksResult = snacksAssistantUserClient.getUserInfoVo(id);
         return snacksResult;
     }
 //    public String getCacheKey(Long id){
@@ -31,9 +33,13 @@ public class UserInfoServiceImpl implements IUserInfoService{
     public SnacksResult setUserInfoVo(UserInfoVo userInfoVo) throws Exception{
         return null;
     }
-
-
-//    @Bean
+    @HystrixCommand
+    @Override
+    public SnacksResult getUserInfoVoList(UserInfoVo userInfoVo) throws Exception {
+        SnacksResult<List<UserInfoVo>> snacksResult = snacksAssistantUserClient.getUserInfoVoList(userInfoVo);
+        return snacksResult;
+    }
+    //    @Bean
 //    @LoadBalanced//提供负载均衡的功能，具体实现是通过拦截器实现的
 //    public RestTemplate getRestTemplate() {
 //        return new RestTemplate();

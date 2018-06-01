@@ -1,23 +1,30 @@
 package com.coconason.snacksassistantuser.service.impl;
 
+import com.coconason.snacksassistantcommon.util.SnowflakeIdWorker;
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.coconason.snacksassistantuser.cast.CastUtil;
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantuser.dao.UserInfoMapper;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantuser.po.UserInfo;
 import com.coconason.snacksassistantuser.po.UserInfoExample;
-import com.coconason.snacksassistantuser.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.coconason.snacksassistantuser.service.IUserInfoService;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserInfoServiceImpl implements IUserInfoService{
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Value("${server-id}")
+    private long serverId;
+    @Value("${center-id}")
+    private long dataCenterId;
 
     private final byte NO = 0;
     private final byte YES = 1;
@@ -26,13 +33,14 @@ public class UserInfoServiceImpl implements IUserInfoService{
     public SnacksResult addUserInfoVo(UserInfoVo userInfoVo) throws Exception{
         UserInfo userInfo = CastUtil.UserInfoVoToUserInfo(userInfoVo);
         Date now = new Date();
+        userInfo.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
         userInfo.setCreateTime(now);
         userInfo.setUpdateTime(now);
         userInfo.setDeleted(NO);
         if (userInfoMapper.insertSelective(userInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult(ErrorCode.OK.value(),ErrorCode.OK.msg());
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
     @Override
@@ -41,9 +49,9 @@ public class UserInfoServiceImpl implements IUserInfoService{
         userInfo.setId(id);
         userInfo.setDeleted(YES);
         if (userInfoMapper.updateByPrimaryKeySelective(userInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult(ErrorCode.OK.value(),ErrorCode.OK.msg());
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
@@ -55,14 +63,22 @@ public class UserInfoServiceImpl implements IUserInfoService{
         Date now = new Date();
         userInfo.setUpdateTime(now);
          if (userInfoMapper.updateByExampleSelective(userInfo,userInfoExample)>0){
-            return SnacksResult.ok();
-        }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
-        }
+             return new SnacksResult(ErrorCode.OK.value(),ErrorCode.OK.msg());
+         }else{
+             return new SnacksResult(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+         }
     }
     @Override
     public UserInfoVo getUserInfoVo(long id) throws Exception{
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
         return CastUtil.UserInfoToUserInfoVo(userInfo);
+    }
+    @Override
+    public List<UserInfoVo> getUserInfoVoList(UserInfoVo userInfoVo) throws Exception{
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
+        userInfoCriteria.andIdGreaterThan(userInfoVo.getId());
+        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+        return CastUtil.UserInfoListToUserInfoVoList(userInfoList);
     }
 }

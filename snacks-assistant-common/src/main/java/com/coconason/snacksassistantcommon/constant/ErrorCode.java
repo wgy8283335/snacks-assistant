@@ -7,7 +7,9 @@ public enum ErrorCode {
 	//参数有误
 	PARAM_ERROR(100001),
 	//系统错误
-	SYS_ERROR(100000);
+	SYS_ERROR(100000),
+	//成功
+	OK(200);
 
 	
 	private final Integer value;
@@ -25,7 +27,12 @@ public enum ErrorCode {
 		return this.value.toString();
 	}
 	public String msg() {
-		return ("HTTPCODE_" + this.value);
+		if(this.value==200){
+			return ("success");
+		}else{
+			return ("HTTPCODE_" + this.value);
+		}
+
 	}
 
 	

@@ -13,7 +13,4 @@ public interface IOrderInfoService {
 
     OrderInfoVo getOrderInfoVo(long id) throws Exception;
 
-
-
-
 }

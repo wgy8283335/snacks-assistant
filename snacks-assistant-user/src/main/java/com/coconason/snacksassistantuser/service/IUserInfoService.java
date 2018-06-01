@@ -1,7 +1,10 @@
 package com.coconason.snacksassistantuser.service;
 
-import com.coconason.snacksassistantuser.vo.UserInfoVo;
+
 import com.coconason.snacksassistantcommon.model.SnacksResult;
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
+
+import java.util.List;
 
 public interface IUserInfoService {
 
@@ -13,7 +16,7 @@ public interface IUserInfoService {
 
     UserInfoVo getUserInfoVo(long id) throws Exception;
 
-
+    List<UserInfoVo> getUserInfoVoList(UserInfoVo userInfoVo) throws Exception;
 
 
 }

@@ -1,7 +1,10 @@
 package com.coconason.snacksassistantuser.cast;
 
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.coconason.snacksassistantuser.po.UserInfo;
-import com.coconason.snacksassistantuser.vo.UserInfoVo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CastUtil {
@@ -42,5 +45,11 @@ public class CastUtil {
 		userInfo.setSubscriptionStartTime(userInfoVo.getSubscriptionStartTime());
 		return userInfo;
 	}
-
+	public static List<UserInfoVo> UserInfoListToUserInfoVoList(List<UserInfo> userInfoList) {
+		List<UserInfoVo> userInfoVoList = new ArrayList<UserInfoVo>();
+		for (UserInfo userInfo : userInfoList) {
+			userInfoVoList.add(UserInfoToUserInfoVo(userInfo));
+		}
+		return userInfoVoList;
+	}
 }

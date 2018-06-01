@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,25 +22,35 @@ public class UserInfoController {
     private static final Logger LOG = LogManager.getLogger(UserInfoController.class);
 
     @ApiOperation(value="Query the information of the user", notes="")
-    @RequestMapping(value="/get_user_info/{id}",method = RequestMethod.GET)
+    @RequestMapping(value="/get_user_info/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult getUserInfoVo(@PathVariable Long id){
         try{
             SnacksResult snacksResult = userInfoService.getUserInfoVo(id);
             return snacksResult;
         }catch (Exception exception){
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
 
     @ApiOperation(value="Modify the information of the user", notes="")
-    @RequestMapping(value="/set_user_info",method = RequestMethod.POST)
+    @RequestMapping(value="/set_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult setUserInfoVo(@RequestBody UserInfoVo userInfoVo){
         try{
 
             SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
             return snacksResult;
         }catch (Exception exception){
-            return SnacksResult.build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            return new SnacksResult(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
+    @ApiOperation(value="Query the information of the users", notes="")
+    @RequestMapping(value="/get_user_info_list",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult getUserInfoVoList(@RequestBody UserInfoVo userInfoVo){
+        try{
+            SnacksResult snacksResult = userInfoService.getUserInfoVoList(userInfoVo);
+            return snacksResult;
+        }catch (Exception exception){
+            return new SnacksResult(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
 

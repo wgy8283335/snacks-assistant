@@ -1,21 +1,17 @@
 package com.coconason.snacksassistantcommon.model;
 
-import com.alibaba.fastjson.JSON;
+import java.io.Serializable;
 
 
-public class SnacksResult {
+public class SnacksResult<T> implements Serializable {
 
-
+    private static final long serialVersionUID = 1L;
     // 响应业务状态
     private Integer code;
-
     // 响应消息
     private String message;
-
     // 响应中的数据
-    private Object datum;
-
-
+    private T datum;
 
     public Integer getCode() {
 		return code;
@@ -33,85 +29,50 @@ public class SnacksResult {
 		this.message = message;
 	}
 
-	public Object getDatum() {
-		return datum;
-	}
+    public T getDatum() {
+        return datum;
+    }
 
-	public void setDatum(Object datum) {
-		this.datum = datum;
-	}
+    public void setDatum(T datum) {
+        this.datum = datum;
+    }
 
-	public SnacksResult(){
+    public SnacksResult(){
 
     }
 
-    public SnacksResult(Integer code, String message, Object datum) {
+    public SnacksResult(Integer code, String message, T datum) {
         this.code = code;
         this.message = message;
         this.datum = datum;
     }
 
-    public SnacksResult(Object datum) {
+    public SnacksResult(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+        this.datum = null;
+    }
+
+    public SnacksResult(T datum) {
         this.code = 200;
         this.message = "OK";
         this.datum = datum;
     }
-    
-    
-    public static SnacksResult build(Integer code, String message, Object datum) {
+
+    public SnacksResult build(Integer code, String message, T datum) {
         return new SnacksResult(code, message, datum);
     }
-    
-    public static SnacksResult build(Integer code, String message) {
+    public SnacksResult build(Integer code, String message) {
         return new SnacksResult(code, message, null);
     }
     
-    public static SnacksResult ok(Object datum) {
+    public SnacksResult ok(T datum) {
         return new SnacksResult(datum);
     }
 
-    public static SnacksResult ok() {
+    public SnacksResult ok() {
         return new SnacksResult(null);
     }
 
-    public static SnacksResult formatToList(String jsonData, Class<?> clazz) {
-        try {
-            if (clazz == null) {
-                return JSON.parseObject(jsonData,SnacksResult.class);
-            }
-            SnacksResult snacksResult= JSON.parseObject(jsonData,SnacksResult.class);
-            String data =snacksResult.getDatum().toString();
-            Object obj=JSON.parseArray(data,clazz);
-            snacksResult.setDatum(obj);
-            return snacksResult;
-        } catch (Exception e) {
-            return null;
-        }
-    }    
-
-    public static SnacksResult formatToPojo(String jsonData, Class<?> clazz) {
-        try {
-            if (clazz == null) {
-                return JSON.parseObject(jsonData,SnacksResult.class);
-            }
-            SnacksResult snacksResult= JSON.parseObject(jsonData,SnacksResult.class);
-            String data =snacksResult.getDatum().toString();
-            Object obj=JSON.parseObject(data,clazz);
-            snacksResult.setDatum(obj);
-            return snacksResult;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static SnacksResult format(String jsonData) {
-        try {
-            //return MAPPER.readValue(jsonData, snacksResult.class);
-        	return JSON.parseObject(jsonData,SnacksResult.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 }
