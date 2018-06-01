@@ -8,7 +8,7 @@ import com.coconason.snacksassistantorder.dao.OrderInfoMapper;
 import com.coconason.snacksassistantorder.po.OrderInfo;
 import com.coconason.snacksassistantorder.po.OrderInfoExample;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
-import com.coconason.snacksassistantorder.vo.OrderInfoVo;
+import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

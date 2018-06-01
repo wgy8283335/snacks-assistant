@@ -1,7 +1,7 @@
 package com.coconason.snacksassistantorder.cast;
 
 import com.coconason.snacksassistantorder.po.OrderInfo;
-import com.coconason.snacksassistantorder.vo.OrderInfoVo;
+import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
 
 public class CastUtil {
 

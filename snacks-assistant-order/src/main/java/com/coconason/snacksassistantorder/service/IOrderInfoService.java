@@ -1,7 +1,7 @@
 package com.coconason.snacksassistantorder.service;
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
-import com.coconason.snacksassistantorder.vo.OrderInfoVo;
+import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
 
 public interface IOrderInfoService {
 

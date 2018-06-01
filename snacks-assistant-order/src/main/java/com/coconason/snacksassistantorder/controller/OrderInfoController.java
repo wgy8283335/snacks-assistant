@@ -2,7 +2,7 @@ package com.coconason.snacksassistantorder.controller;
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
-import com.coconason.snacksassistantorder.vo.OrderInfoVo;
+import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

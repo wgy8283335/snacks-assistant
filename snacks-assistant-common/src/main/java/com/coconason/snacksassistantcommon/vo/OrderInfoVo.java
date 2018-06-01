@@ -1,4 +1,4 @@
-package com.coconason.snacksassistantorder.vo;
+package com.coconason.snacksassistantcommon.vo;
 
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
