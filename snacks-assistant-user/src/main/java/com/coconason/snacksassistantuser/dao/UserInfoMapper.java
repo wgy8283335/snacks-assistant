@@ -3,7 +3,6 @@ package com.coconason.snacksassistantuser.dao;
 import com.coconason.snacksassistantuser.po.UserInfo;
 import com.coconason.snacksassistantuser.po.UserInfoExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper

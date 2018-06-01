@@ -15,11 +15,13 @@
     
     
     <typeAliases>
-       <typeAlias type="com.coconason.snacksassistantuser.po.UserInfo" alias="userInfo" />
+        <typeAlias type="com.coconason.snacksassistantuser.po.UserInfo" alias="userInfo" />
+        <typeAlias type="com.coconason.snacksassistantuser.po.AddressInfo" alias="addressInfo" />
     </typeAliases>
     
     <mappers>
-       <mapper resource="mapping/UserInfoMapper.xml" />
+        <mapper resource="mapping/UserInfoMapper.xml" />
+        <mapper resource="mapping/AddressInfoMapper.xml" />
     </mappers>
 
 </configuration>

@@ -46,6 +46,6 @@ public class OrderInfoController {
     @RequestMapping(value="/get_order_info/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult getOrderInfoVo(@PathVariable @Null Long id) throws Exception{
         OrderInfoVo orderInfoVo = orderInfoService.getOrderInfoVo(id);
-        return new SnacksResult().ok(orderInfoVo);
+        return new SnacksResult<OrderInfoVo>().ok(orderInfoVo);
     }
 }
