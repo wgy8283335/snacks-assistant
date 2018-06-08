@@ -6,6 +6,8 @@ public class AddressInfoWxVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private  String Id;
+
     private String address;
 
     private String recipient;
@@ -13,6 +15,14 @@ public class AddressInfoWxVo implements Serializable {
     private String contact;
     //
     private Long userInfoId;
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
 
     public String getAddress() {
         return address;
