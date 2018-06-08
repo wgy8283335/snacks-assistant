@@ -7,7 +7,6 @@ import com.coconason.snacksassistantuser.cast.CastUtil;
 import com.coconason.snacksassistantuser.dao.AddressInfoMapper;
 import com.coconason.snacksassistantuser.po.AddressInfo;
 import com.coconason.snacksassistantuser.po.AddressInfoExample;
-import com.coconason.snacksassistantuser.po.UserInfoExample;
 import com.coconason.snacksassistantuser.service.IAddressInfoService;
 import com.coconason.snacksassistantcommon.vo.AddressInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class AddressInfoServiceImpl implements IAddressInfoService {
         AddressInfo addressInfo = CastUtil.AddressInfoVoToAddressInfo(addressInfoVo);
         Date now = new Date();
         addressInfo.setUpdateTime(now);
-         if (addressInfoMapper.updateByExampleSelective(addressInfo,addressInfoExample)>0){
+        if (addressInfoMapper.updateByExampleSelective(addressInfo,addressInfoExample)>0){
             return new SnacksResult().ok();
         }else{
             return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
@@ -72,7 +71,6 @@ public class AddressInfoServiceImpl implements IAddressInfoService {
         AddressInfo addressInfo = addressInfoMapper.selectByPrimaryKey(id);
         return CastUtil.AddressInfoToAddressInfoVo(addressInfo);
     }
-
     @Override
     public List<AddressInfoVo> getAddressInfoVoList(AddressInfoVo addressInfoVo) throws Exception {
         AddressInfoExample addressInfoExample = new AddressInfoExample();

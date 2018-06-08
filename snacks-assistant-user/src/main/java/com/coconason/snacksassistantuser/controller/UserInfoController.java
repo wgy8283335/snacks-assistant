@@ -42,6 +42,7 @@ public class UserInfoController {
     @ApiOperation(value="Modify the information of the user", notes="")
     @RequestMapping(value="/set_user_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public SnacksResult setUserInfoVo(@RequestBody @Validated UserInfoVo userInfoVo) throws Exception{
+        LOG.info("Controller");
         SnacksResult snacksResult = userInfoService.setUserInfoVo(userInfoVo);
         return snacksResult;
     }

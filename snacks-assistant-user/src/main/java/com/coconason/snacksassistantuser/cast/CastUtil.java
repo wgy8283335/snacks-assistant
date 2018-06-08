@@ -4,12 +4,13 @@ import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.coconason.snacksassistantuser.po.AddressInfo;
 import com.coconason.snacksassistantuser.po.UserInfo;
 import com.coconason.snacksassistantcommon.vo.AddressInfoVo;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CastUtil {
-
+	private static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 	public static UserInfoVo UserInfoToUserInfoVo(UserInfo userInfo){
 		UserInfoVo userInfoVo = new UserInfoVo();
 		userInfoVo.setAccountId(userInfo.getAccountId());
@@ -21,14 +22,14 @@ public class CastUtil {
 		userInfoVo.setFavoriteFoodIdList(userInfo.getFavoriteFoodIdList());
 		userInfoVo.setId(userInfo.getId());
 		userInfoVo.setPhoneNumber(userInfo.getPhoneNumber());
-		userInfoVo.setReceptionTimeLowerLimit(userInfo.getReceptionTimeLowerLimit());
-		userInfoVo.setReceptionTimeUpperLimit(userInfo.getReceptionTimeUpperLimit());
+		userInfoVo.setReceptionTimeLowerLimit(sdf.format(userInfo.getReceptionTimeLowerLimit()));
+		userInfoVo.setReceptionTimeUpperLimit(sdf.format(userInfo.getReceptionTimeUpperLimit()));
 		userInfoVo.setRecipient(userInfo.getRecipient());
 		userInfoVo.setSubscriptionSate(userInfo.getSubscriptionSate());
 		userInfoVo.setSubscriptionStartTime(userInfo.getSubscriptionStartTime());
 		return userInfoVo;
 	}	
-	public static UserInfo UserInfoVoToUserInfo(UserInfoVo userInfoVo){
+	public static UserInfo UserInfoVoToUserInfo(UserInfoVo userInfoVo) throws Exception{
 		UserInfo userInfo = new UserInfo();
 		userInfo.setAccountId(userInfoVo.getAccountId());
 		userInfo.setAddress(userInfoVo.getAddress());
@@ -39,8 +40,12 @@ public class CastUtil {
 		userInfo.setFavoriteFoodIdList(userInfoVo.getFavoriteFoodIdList());
 		userInfo.setId(userInfoVo.getId());
 		userInfo.setPhoneNumber(userInfoVo.getPhoneNumber());
-		userInfo.setReceptionTimeLowerLimit(userInfoVo.getReceptionTimeLowerLimit());
-		userInfo.setReceptionTimeUpperLimit(userInfoVo.getReceptionTimeUpperLimit());
+		if(userInfoVo.getReceptionTimeLowerLimit()!=null){
+			userInfo.setReceptionTimeLowerLimit(sdf.parse(userInfoVo.getReceptionTimeLowerLimit()));
+		}
+		if(userInfoVo.getReceptionTimeUpperLimit()!=null){
+			userInfo.setReceptionTimeUpperLimit(sdf.parse(userInfoVo.getReceptionTimeUpperLimit()));
+		}
 		userInfo.setRecipient(userInfoVo.getRecipient());
 		userInfo.setSubscriptionSate(userInfoVo.getSubscriptionSate());
 		userInfo.setSubscriptionStartTime(userInfoVo.getSubscriptionStartTime());
@@ -62,6 +67,8 @@ public class CastUtil {
 		addressInfoVo.setCityName(addressInfo.getCityName());
 		addressInfoVo.setCountyName(addressInfo.getCountyName());
 		addressInfoVo.setDetailInfo(addressInfo.getDetailInfo());
+		addressInfoVo.setRecipients(addressInfo.getRecipients());
+		addressInfoVo.setContacts(addressInfo.getContacts());
 		addressInfoVo.setUserInfoId(addressInfo.getUserInfoId());
 		return addressInfoVo;
 	}
@@ -74,6 +81,8 @@ public class CastUtil {
 		addressInfo.setCityName(addressInfoVo.getCityName());
 		addressInfo.setCountyName(addressInfoVo.getCountyName());
 		addressInfo.setDetailInfo(addressInfoVo.getDetailInfo());
+		addressInfo.setRecipients(addressInfoVo.getRecipients());
+		addressInfo.setContacts(addressInfoVo.getContacts());
 		addressInfo.setUserInfoId(addressInfoVo.getUserInfoId());
 		return addressInfo;
 	}
