@@ -3,10 +3,14 @@ package com.coconason.snacksassistantuser.service.impl;
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantcommon.util.SnowflakeIdWorker;
+import com.coconason.snacksassistantcommon.vo.AddressInfoWxVo;
 import com.coconason.snacksassistantuser.cast.CastUtil;
 import com.coconason.snacksassistantuser.dao.AddressInfoMapper;
+import com.coconason.snacksassistantuser.dao.UserInfoMapper;
 import com.coconason.snacksassistantuser.po.AddressInfo;
 import com.coconason.snacksassistantuser.po.AddressInfoExample;
+import com.coconason.snacksassistantuser.po.UserInfo;
+import com.coconason.snacksassistantuser.po.UserInfoExample;
 import com.coconason.snacksassistantuser.service.IAddressInfoService;
 import com.coconason.snacksassistantcommon.vo.AddressInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,8 @@ public class AddressInfoServiceImpl implements IAddressInfoService {
 
     @Autowired
     private AddressInfoMapper addressInfoMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
     @Value("${server-id}")
     private long serverId;
     @Value("${center-id}")
@@ -72,11 +78,22 @@ public class AddressInfoServiceImpl implements IAddressInfoService {
         return CastUtil.AddressInfoToAddressInfoVo(addressInfo);
     }
     @Override
-    public List<AddressInfoVo> getAddressInfoVoList(AddressInfoVo addressInfoVo) throws Exception {
+    public List<AddressInfoVo> getAddressInfoVoList(Long userId) throws Exception {
         AddressInfoExample addressInfoExample = new AddressInfoExample();
         AddressInfoExample.Criteria addressInfoCriteria = addressInfoExample.createCriteria();
-        addressInfoCriteria.andUserInfoIdEqualTo(addressInfoVo.getUserInfoId());
+        addressInfoCriteria.andUserInfoIdEqualTo(userId);
         List<AddressInfo> addressInfoList = addressInfoMapper.selectByExample(addressInfoExample);
         return CastUtil.AddressInfoListToAddressInfoVoList(addressInfoList);
     }
+    @Override
+    public List<AddressInfoWxVo> getAddressInfoWxVoList(Long userId) throws Exception {
+        AddressInfoExample addressInfoExample = new AddressInfoExample();
+        AddressInfoExample.Criteria addressInfoCriteria = addressInfoExample.createCriteria();
+        addressInfoCriteria.andUserInfoIdEqualTo(userId);
+        addressInfoCriteria.andDeletedNotEqualTo((byte)1);
+        List<AddressInfo> addressInfoList = addressInfoMapper.selectByExample(addressInfoExample);
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
+        return CastUtil.AddressInfoListToAddressInfoWxVoList(addressInfoList,Long.parseLong(userInfo.getAddress()));
+    }
+
 }

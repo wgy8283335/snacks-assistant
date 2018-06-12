@@ -1,5 +1,6 @@
 package com.coconason.snacksassistantuser.cast;
 
+import com.coconason.snacksassistantcommon.vo.AddressInfoWxVo;
 import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.coconason.snacksassistantuser.po.AddressInfo;
 import com.coconason.snacksassistantuser.po.UserInfo;
@@ -92,5 +93,29 @@ public class CastUtil {
 			addressInfoVoList.add(AddressInfoToAddressInfoVo(addressInfo));
 		}
 		return addressInfoVoList;
+	}
+	public static AddressInfoWxVo AddressInfoToAddressInfoWxVo(AddressInfo addressInfo){
+		AddressInfoWxVo addressInfoWxVo = new AddressInfoWxVo();
+		addressInfoWxVo.setId(String.valueOf(addressInfo.getId()));
+		addressInfoWxVo.setAddress(addressInfo.getProvinceName()+"，"+addressInfo.getCityName()+"，"+addressInfo.getCountyName()+"，"+addressInfo.getDetailInfo());
+		addressInfoWxVo.setRecipient(addressInfo.getRecipients());
+		addressInfoWxVo.setContact(addressInfo.getContacts());
+		addressInfoWxVo.setUserInfoId(String.valueOf(addressInfo.getUserInfoId()));
+		return addressInfoWxVo;
+	}
+	public static List<AddressInfoWxVo> AddressInfoListToAddressInfoWxVoList(List<AddressInfo> addressInfoList,Long addressId) {
+		List<AddressInfoWxVo> addressInfoWxVoList = new ArrayList();
+		for (AddressInfo addressInfo : addressInfoList) {
+			AddressInfoWxVo addressInfoWxVo = AddressInfoToAddressInfoWxVo(addressInfo);
+			Long temp = addressInfo.getId();
+			if( temp.longValue() == addressId.longValue()){
+				addressInfoWxVo.setDefaultAddress(true);
+			}else{
+				addressInfoWxVo.setDefaultAddress(false);
+			}
+			addressInfoWxVoList.add(addressInfoWxVo);
+		}
+		System.out.println(addressInfoWxVoList.get(0).getUserInfoId());
+		return addressInfoWxVoList;
 	}
 }

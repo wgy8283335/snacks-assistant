@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderInfoServiceImpl implements IOrderInfoService {
@@ -70,5 +71,14 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     public OrderInfoVo getOrderInfoVo(long id) throws Exception{
         OrderInfo orderInfo = orderInfoMapper.selectByPrimaryKey(id);
         return CastUtil.OrderInfoToOrderInfoVo(orderInfo);
+    }
+
+    @Override
+    public List<OrderInfoVo> getOrderInfoVoList(long userId) throws Exception {
+        OrderInfoExample orderInfoExample = new OrderInfoExample();
+        OrderInfoExample.Criteria orderInfoCriteria = orderInfoExample.createCriteria();
+        orderInfoCriteria.andUserIdEqualTo(userId);
+        List<OrderInfo> orderInfoList = orderInfoMapper.selectByExample(orderInfoExample);
+        return CastUtil.OrderInfoListToOrderInfoVoList(orderInfoList);
     }
 }

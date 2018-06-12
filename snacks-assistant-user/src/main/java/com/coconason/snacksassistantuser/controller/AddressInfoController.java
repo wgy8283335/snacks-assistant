@@ -1,6 +1,7 @@
 package com.coconason.snacksassistantuser.controller;
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
+import com.coconason.snacksassistantcommon.vo.AddressInfoWxVo;
 import com.coconason.snacksassistantuser.service.IAddressInfoService;
 import com.coconason.snacksassistantcommon.vo.AddressInfoVo;
 import io.swagger.annotations.ApiOperation;
@@ -31,8 +32,8 @@ public class AddressInfoController {
 
     @ApiOperation(value="Delete the information of the address_info", notes="")
     @RequestMapping(value="/delete_address_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SnacksResult deleteAddressInfoVo(@RequestParam @Null Long id) throws Exception{
-        SnacksResult snacksResult = addressInfoService.deleteAddressInfoVo(id);
+    public SnacksResult deleteAddressInfoVo(@RequestBody @Validated AddressInfoVo addressInfoVo) throws Exception{
+        SnacksResult snacksResult = addressInfoService.deleteAddressInfoVo(addressInfoVo.getId());
         return snacksResult;
     }
 
@@ -50,9 +51,15 @@ public class AddressInfoController {
         return new SnacksResult().ok(addressInfoVo);
     }
     @ApiOperation(value="Query the information of the address_info", notes="")
-    @RequestMapping(value="/get_address_info_list",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public SnacksResult getAddressInfoVoList(@RequestBody @Validated AddressInfoVo addressInfoVo) throws Exception{
-        List<AddressInfoVo> addressInfoVoList = addressInfoService.getAddressInfoVoList(addressInfoVo);
+    @RequestMapping(value="/get_address_info_list/{userId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult getAddressInfoVoList(@PathVariable @Null Long userId) throws Exception{
+        List<AddressInfoVo> addressInfoVoList = addressInfoService.getAddressInfoVoList(userId);
         return new SnacksResult().ok(addressInfoVoList);
+    }
+    @ApiOperation(value="Query the information of the address_info for wx", notes="")
+    @RequestMapping(value="/get_address_info_list_wx/{userId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult getAddressInfoWxVoList(@PathVariable @Null Long userId) throws Exception{
+        List<AddressInfoWxVo> addressInfoWxVoList = addressInfoService.getAddressInfoWxVoList(userId);
+        return new SnacksResult().ok(addressInfoWxVoList);
     }
 }

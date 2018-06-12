@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Null;
+import java.util.List;
 
 @RestController
 public class OrderInfoController {
@@ -47,5 +48,12 @@ public class OrderInfoController {
     public SnacksResult getOrderInfoVo(@PathVariable @Null Long id) throws Exception{
         OrderInfoVo orderInfoVo = orderInfoService.getOrderInfoVo(id);
         return new SnacksResult<OrderInfoVo>().ok(orderInfoVo);
+    }
+
+    @ApiOperation(value="Query the information of the order list", notes="")
+    @RequestMapping(value="/get_order_info_list/{userId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult getOrderInfoVoList(@PathVariable @Null Long userId) throws Exception{
+        List<OrderInfoVo> orderInfoVoList = orderInfoService.getOrderInfoVoList(userId);
+        return new SnacksResult<List<OrderInfoVo>>().ok(orderInfoVoList);
     }
 }
