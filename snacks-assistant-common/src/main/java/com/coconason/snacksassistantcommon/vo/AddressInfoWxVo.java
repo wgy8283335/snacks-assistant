@@ -6,22 +6,24 @@ public class AddressInfoWxVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private  String Id;
+    private  String id;
 
     private String address;
 
     private String recipient;
-    //
+
     private String contact;
-    //
-    private Long userInfoId;
+
+    private String userInfoId;
+
+    private boolean defaultAddress;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getAddress() {
@@ -48,11 +50,19 @@ public class AddressInfoWxVo implements Serializable {
         this.contact = contact;
     }
 
-    public Long getUserInfoId() {
+    public String getUserInfoId() {
         return userInfoId;
     }
 
-    public void setUserInfoId(Long userInfoId) {
+    public void setUserInfoId(String userInfoId) {
         this.userInfoId = userInfoId;
+    }
+
+    public boolean getDefaultAddress() {
+        return defaultAddress;
+    }
+
+    public void setDefaultAddress(boolean defaultAddress) {
+        this.defaultAddress = defaultAddress;
     }
 }
