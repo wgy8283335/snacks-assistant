@@ -57,7 +57,7 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     public SnacksResult setOrderInfoVo(OrderInfoVo orderInfoVo) throws Exception{
         OrderInfoExample orderInfoExample = new OrderInfoExample();
         OrderInfoExample.Criteria orderInfoCriteria = orderInfoExample.createCriteria();
-        orderInfoCriteria.andIdEqualTo(orderInfoVo.getId());
+        orderInfoCriteria.andIdEqualTo(Long.parseLong(orderInfoVo.getId()));
         OrderInfo orderInfo = CastUtil.OrderInfoVoToOrderInfo(orderInfoVo);
         Date now = new Date();
         orderInfo.setUpdateTime(now);
