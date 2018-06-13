@@ -2,7 +2,7 @@ package com.coconason.snacksassistantconsumer.clinets;
 
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
-import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

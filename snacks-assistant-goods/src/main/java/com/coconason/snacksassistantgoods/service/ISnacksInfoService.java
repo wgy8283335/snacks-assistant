@@ -1,7 +1,7 @@
 package com.coconason.snacksassistantgoods.service;
 
 import com.coconason.snacksassistantcommon.model.SnacksResult;
-import com.coconason.snacksassistantgoods.vo.SnacksInfoVo;
+import com.coconason.snacksassistantcommon.vo.SnacksInfoVo;
 
 public interface ISnacksInfoService {
 
@@ -12,8 +12,5 @@ public interface ISnacksInfoService {
     SnacksResult setSnacksInfoVo(SnacksInfoVo snacksInfoVo) throws Exception;
 
     SnacksInfoVo getSnacksInfoVo(long id) throws Exception;
-
-
-
 
 }

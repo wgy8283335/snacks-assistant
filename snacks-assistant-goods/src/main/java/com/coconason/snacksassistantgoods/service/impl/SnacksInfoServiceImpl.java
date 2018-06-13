@@ -8,11 +8,10 @@ import com.coconason.snacksassistantgoods.dao.SnacksInfoMapper;
 import com.coconason.snacksassistantgoods.po.SnacksInfo;
 import com.coconason.snacksassistantgoods.po.SnacksInfoExample;
 import com.coconason.snacksassistantgoods.service.ISnacksInfoService;
-import com.coconason.snacksassistantgoods.vo.SnacksInfoVo;
+import com.coconason.snacksassistantcommon.vo.SnacksInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Service
@@ -36,9 +35,9 @@ public class SnacksInfoServiceImpl implements ISnacksInfoService {
         snacksInfo.setDeleted(NO);
         snacksInfo.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
         if (snacksInfoMapper.insertSelective(snacksInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
     @Override
@@ -47,9 +46,9 @@ public class SnacksInfoServiceImpl implements ISnacksInfoService {
         snacksInfo.setId(id);
         snacksInfo.setDeleted(YES);
         if (snacksInfoMapper.updateByPrimaryKeySelective(snacksInfo)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
@@ -61,9 +60,9 @@ public class SnacksInfoServiceImpl implements ISnacksInfoService {
         Date now = new Date();
         snacksInfo.setUpdateTime(now);
          if (snacksInfoMapper.updateByExampleSelective(snacksInfo,snacksInfoExample)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override

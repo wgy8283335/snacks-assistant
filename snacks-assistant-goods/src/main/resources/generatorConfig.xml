@@ -73,6 +73,8 @@
         <!--<property name="useActualColumnNames" value="false" />
     </table>
         <!- 指定数据库表 -->
-        <table schema="" tableName="${generator.tableName}"/>
+        <table schema="" tableName="${generator.tableName1}"/>
+        <table schema="" tableName="${generator.tableName2}"/>
+        <table schema="" tableName="${generator.tableName3}"/>
     </context>
 </generatorConfiguration>

@@ -8,11 +8,10 @@ import com.coconason.snacksassistantgoods.dao.SnacksTypesMapper;
 import com.coconason.snacksassistantgoods.po.SnacksTypes;
 import com.coconason.snacksassistantgoods.po.SnacksTypesExample;
 import com.coconason.snacksassistantgoods.service.ISnacksTypesService;
-import com.coconason.snacksassistantgoods.vo.SnacksTypesVo;
+import com.coconason.snacksassistantcommon.vo.SnacksTypesVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Service
@@ -36,9 +35,9 @@ public class SnacksTypesServiceImpl implements ISnacksTypesService {
         snacksTypes.setDeleted(NO);
         snacksTypes.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
         if (snacksTypesMapper.insertSelective(snacksTypes)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }
     }
     @Override
@@ -47,9 +46,9 @@ public class SnacksTypesServiceImpl implements ISnacksTypesService {
         snacksTypes.setId(id);
         snacksTypes.setDeleted(YES);
         if (snacksTypesMapper.updateByPrimaryKeySelective(snacksTypes)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
@@ -61,9 +60,9 @@ public class SnacksTypesServiceImpl implements ISnacksTypesService {
         Date now = new Date();
         snacksTypes.setUpdateTime(now);
          if (snacksTypesMapper.updateByExampleSelective(snacksTypes,snacksTypesExample)>0){
-            return SnacksResult.ok();
+            return new SnacksResult().ok();
         }else{
-            return SnacksResult.build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
+            return new SnacksResult().build(ErrorCode.RECORD_NOT_EXIST_ERROR.value(),ErrorCode.RECORD_NOT_EXIST_ERROR.msg());
         }
     }
     @Override
