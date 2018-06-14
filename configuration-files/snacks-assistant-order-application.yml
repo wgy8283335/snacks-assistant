@@ -49,9 +49,9 @@ spring:
     url: jdbc:mysql://192.168.244.133:3306/sa_order?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useSSL=false
     username: root
     password: '{cipher}AQBNTTDwhRFJFh2wnghvKG54PZ7EHeAoa2248PWm8zJ2qyukjWz3wOwAdeZxyGXPt+GwmvhKkPM27MjzOOM3yhnHAJb4z2xEfVr5vve/t9V0z+7f8n4kTX5uBlLK5EtpiI3DcuQxJCgs7LsnR3DTrnZ/EXOVcpZqhvhZpAz+8JOdWRS22ddi792GeSaY7cd5KPn3XNoPR5/f4VtRxUYI9moCZqLHTdDIVgo8sINgcOh/6u2PJ8L1YRl4ECJqOFf61oikvLVwmr7zEuS0mJ5E5bOgrMgczrWk8hYRefvg23BqCqOnp+Yn2/eLYBLeDzWxYhHSoRNeZd4dorvkGV+EIGp1EDgTlsaA/5HFFZkdbJdTBplvHqexMDJ97bb5741s42M='
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    #driver-class-name: com.mysql.jdbc.Driver
+    #type: com.alibaba.druid.pool.DruidDataSource
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
 ########################################################serverId+centerId###############################################
 server-id: 1
 center-id: 1
