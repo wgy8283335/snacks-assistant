@@ -1,17 +1,22 @@
 package com.coconason.snacksassistantorder.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantcommon.util.SnowflakeIdWorker;
+import com.coconason.snacksassistantcommon.vo.SnacksInventoryVo;
 import com.coconason.snacksassistantorder.cast.CastUtil;
+import com.coconason.snacksassistantorder.clients.SnacksAssistantGoodsClient;
 import com.coconason.snacksassistantorder.dao.OrderInfoMapper;
 import com.coconason.snacksassistantorder.po.OrderInfo;
 import com.coconason.snacksassistantorder.po.OrderInfoExample;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
 import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
+import com.codingapi.tx.annotation.TxTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -21,12 +26,33 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
 
     @Autowired
     private OrderInfoMapper orderInfoMapper;
+    @Autowired
+    private SnacksAssistantGoodsClient snacksAssistantGoodsClient;
     @Value("${server-id}")
     private long serverId;
     @Value("${center-id}")
     private long dataCenterId;
     private final byte NO = 0;
     private final byte YES = 1;
+
+    @TxTransaction(isStart = true)
+    @Transactional
+    @Override
+    public SnacksResult addOrderInfoVoWx(OrderInfoVo orderInfoVo) throws Exception {
+        OrderInfo orderInfo = CastUtil.OrderInfoVoToOrderInfo(orderInfoVo);
+        Date now = new Date();
+        orderInfo.setCreateTime(now);
+        orderInfo.setUpdateTime(now);
+        orderInfo.setDeleted(NO);
+        orderInfo.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
+        if (orderInfoMapper.insertSelective(orderInfo)>0){
+            JSONArray goodsAndNum = orderInfoVo.getGoods();
+            snacksAssistantGoodsClient.deleteQuantitySnacksInventory(goodsAndNum);
+            return new SnacksResult().ok();
+        }else{
+            return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+        }
+    }
 
     @Override
     public SnacksResult addOrderInfoVo(OrderInfoVo orderInfoVo) throws Exception{

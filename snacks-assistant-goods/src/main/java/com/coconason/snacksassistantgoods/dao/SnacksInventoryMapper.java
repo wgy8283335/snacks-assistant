@@ -95,4 +95,6 @@ public interface SnacksInventoryMapper {
      * @mbggenerated Wed Jun 13 16:53:07 CST 2018
      */
     int updateByPrimaryKey(SnacksInventory record);
+
+    int deleteQuantitySnacksInventory(SnacksInventory record);
 }

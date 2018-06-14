@@ -1,5 +1,6 @@
 package com.coconason.snacksassistantgoods.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantgoods.service.ISnacksInventoryService;
 import com.coconason.snacksassistantcommon.vo.SnacksInventoryVo;
@@ -47,5 +48,12 @@ public class SnacksInventoryController {
     public SnacksResult getSnacksInventoryVo(@PathVariable @Null Long id) throws Exception{
         SnacksInventoryVo snacksInventoryVo = snacksInventoryService.getSnacksInventoryVo(id);
         return new SnacksResult().ok(snacksInventoryVo);
+    }
+
+    @ApiOperation(value="Delete the quantity of the snacks_inventory", notes="")
+    @RequestMapping(value="/delete_quantity_snacks_inventory",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult deleteQuantitySnacksInventory(@RequestBody @Validated JSONArray goodsAndNum) throws Exception{
+        SnacksResult snacksResult = snacksInventoryService.deleteQuantitySnacksInventory(goodsAndNum);
+        return snacksResult;
     }
 }

@@ -21,6 +21,12 @@ public class OrderInfoController {
 
     //Get log4j2 object
     private static final Logger LOG = LogManager.getLogger(OrderInfoController.class);
+    @ApiOperation(value="Add the information of the order", notes="")
+    @RequestMapping(value="/add_order_info_wx",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public SnacksResult addOrderInfoVo(@RequestBody @Validated OrderInfoVo orderInfoVo) throws Exception{
+        SnacksResult snacksResult = orderInfoService.addOrderInfoVoWx(orderInfoVo);
+        return snacksResult;
+    }
 
     @ApiOperation(value="Add the information of the order", notes="")
     @RequestMapping(value="/add_order_info",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,5 +1,6 @@
 package com.coconason.snacksassistantgoods.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantcommon.vo.SnacksInventoryVo;
 
@@ -12,5 +13,7 @@ public interface ISnacksInventoryService {
     SnacksResult setSnacksInventoryVo(SnacksInventoryVo snacksInventoryVo) throws Exception;
 
     SnacksInventoryVo getSnacksInventoryVo(long id) throws Exception;
+
+    SnacksResult deleteQuantitySnacksInventory(JSONArray goodsAndNum) throws Exception;
 
 }

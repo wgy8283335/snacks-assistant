@@ -2,6 +2,8 @@ package com.coconason.snacksassistantcommon.constant;
 
 
 public enum ErrorCode {
+	//商品数量不足
+	GOODS_NOT_ENOUGH(100003),
 	//记录不存在
 	RECORD_NOT_EXIST_ERROR(100002),
 	//参数有误

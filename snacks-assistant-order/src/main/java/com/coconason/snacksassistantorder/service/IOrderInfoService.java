@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IOrderInfoService {
 
+    SnacksResult addOrderInfoVoWx(OrderInfoVo orderInfoVo) throws Exception;
+
     SnacksResult addOrderInfoVo(OrderInfoVo orderInfoVo) throws Exception;
 
     SnacksResult deleteOrderInfoVo(Long id) throws Exception;

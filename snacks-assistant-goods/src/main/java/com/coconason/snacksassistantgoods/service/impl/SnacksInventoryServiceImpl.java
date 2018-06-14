@@ -1,5 +1,8 @@
 package com.coconason.snacksassistantgoods.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantcommon.util.SnowflakeIdWorker;
@@ -12,7 +15,10 @@ import com.coconason.snacksassistantcommon.vo.SnacksInventoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SnacksInventoryServiceImpl implements ISnacksInventoryService {
@@ -69,5 +75,36 @@ public class SnacksInventoryServiceImpl implements ISnacksInventoryService {
     public SnacksInventoryVo getSnacksInventoryVo(long id) throws Exception{
         SnacksInventory snacksInventory = snacksInventoryMapper.selectByPrimaryKey(id);
         return CastUtil.SnacksInventoryToSnacksInventoryVo(snacksInventory);
+    }
+
+    @Override
+    @Transactional
+    public SnacksResult deleteQuantitySnacksInventory(JSONArray goodsAndNum) throws Exception {
+        for(int i=0;i<goodsAndNum.size();i++){
+            JSONObject goodsAndNumItem = goodsAndNum.getJSONObject(i);
+            Long id = (Long)goodsAndNumItem.get("id");
+            Integer num = (Integer)goodsAndNumItem.get("num");
+            SnacksInventoryExample snacksInventoryExample = new SnacksInventoryExample();
+            SnacksInventoryExample.Criteria snacksInventoryCriteria = snacksInventoryExample.createCriteria();
+            snacksInventoryCriteria.andSnacksInfoIdEqualTo(id);
+            snacksInventoryCriteria.andDeletedEqualTo((byte)0);
+            List<SnacksInventory> snacksInventoryList= snacksInventoryMapper.selectByExample(snacksInventoryExample);
+            for(SnacksInventory snacksInventory : snacksInventoryList) {
+                if (num <= snacksInventory.getQuantity()) {
+                    snacksInventoryCriteria.andIdEqualTo(snacksInventory.getId());
+                    snacksInventory.setQuantity(snacksInventory.getQuantity() - num);
+                    snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample);
+                }else {
+                    num = num - snacksInventory.getQuantity();
+                    snacksInventoryCriteria.andIdEqualTo(snacksInventory.getId());
+                    snacksInventory.setQuantity(0);
+                    snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample);
+                }
+            }
+            if(num > 0){
+                return new SnacksResult().build(ErrorCode.GOODS_NOT_ENOUGH.value(),ErrorCode.GOODS_NOT_ENOUGH.msg());
+            }
+        }
+        return new SnacksResult().ok();
     }
 }
