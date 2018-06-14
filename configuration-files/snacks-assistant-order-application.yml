@@ -55,8 +55,8 @@ spring:
 server-id: 1
 center-id: 1
 ######################################################TxManager地址#####################################################
-spring.datasource.initialize : true
-init-db : true
+#spring.datasource.initialize : true
+#init-db : true
 tm.manager.url : http://127.0.0.1:8898/tx/manager/
 logging.level.com.codingapi : debug
 ###################################### LCN框架关于springcloud-hystrix机制###########################################
