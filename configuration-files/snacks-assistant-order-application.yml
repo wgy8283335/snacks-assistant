@@ -58,32 +58,9 @@ center-id: 1
 ######################################################TxManager地址#####################################################
 spring.datasource.initialize : true
 init-db : true
-#tm.manager.url : http://127.0.0.1:8898/tx/manager/
-#logging.level.com.codingapi : debug
+tm.manager.url : http://127.0.0.1:8898/tx/manager/
+logging.level.com.codingapi : debug
 ###################################### LCN框架关于springcloud-hystrix机制###########################################
-#feign.hystrix.enabled : true
-#hystrix.command.default.execution.isolation.strategy : SEMAPHORE
-#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds : 5000
-#########################################################fegin##########################################################
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: basic
-  hystrix:
-    enabled: true
-#########################################################hystrix########################################################
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000  #超时时间，超时后执行回退逻辑
-      circuitBreaker:
-        requestVolumeThreshold: 3   #请求3次内，超过一半的时候断路，则将断路器开启
-  threadpool:
-    default:
-      coreSize: 10  #并发执行的最大线程数，默认10
+feign.hystrix.enabled : true
+hystrix.command.default.execution.isolation.strategy : SEMAPHORE
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds : 5000
