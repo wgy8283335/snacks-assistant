@@ -3,7 +3,7 @@ package com.coconason.snacksassistantconsumer.controller;
 import com.coconason.snacksassistantcommon.constant.ErrorCode;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantconsumer.service.IUserInfoService;
-import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

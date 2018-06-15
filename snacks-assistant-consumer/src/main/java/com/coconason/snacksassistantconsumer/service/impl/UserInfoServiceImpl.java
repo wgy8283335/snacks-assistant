@@ -3,7 +3,7 @@ package com.coconason.snacksassistantconsumer.service.impl;
 import com.coconason.snacksassistantcommon.model.SnacksResult;
 import com.coconason.snacksassistantconsumer.clinets.SnacksAssistantUserClient;
 import com.coconason.snacksassistantconsumer.service.IUserInfoService;
-import com.coconason.snacksassistantconsumer.vo.UserInfoVo;
+import com.coconason.snacksassistantcommon.vo.UserInfoVo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.springframework.beans.factory.annotation.Autowired;

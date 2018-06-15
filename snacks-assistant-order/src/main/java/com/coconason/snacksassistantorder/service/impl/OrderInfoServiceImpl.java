@@ -12,7 +12,7 @@ import com.coconason.snacksassistantorder.po.OrderInfo;
 import com.coconason.snacksassistantorder.po.OrderInfoExample;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
 import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
-import com.codingapi.tx.annotation.TxTransaction;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,8 +35,9 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     private final byte NO = 0;
     private final byte YES = 1;
 
-    @TxTransaction(isStart = true)
-    @Transactional
+    //@TxTransaction(isStart = true)
+    //@Transactional
+    @HystrixCommand
     @Override
     public SnacksResult addOrderInfoVoWx(OrderInfoVo orderInfoVo) throws Exception {
         OrderInfo orderInfo = CastUtil.OrderInfoVoToOrderInfo(orderInfoVo);
