@@ -88,7 +88,6 @@ public class OrderInfoVo implements Serializable {
      *
      * @mbggenerated Thu May 10 17:10:46 CST 2018
      */
-    @Pattern(regexp = "^\\{.*\\}$")
     private String address;
 
     /**
