@@ -12,9 +12,13 @@ import com.coconason.snacksassistantorder.po.OrderInfo;
 import com.coconason.snacksassistantorder.po.OrderInfoExample;
 import com.coconason.snacksassistantorder.service.IOrderInfoService;
 import com.coconason.snacksassistantcommon.vo.OrderInfoVo;
+import com.coconason.snacksassistantorder.service.SendService;
+import com.netflix.discovery.converters.Auto;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +32,8 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     private OrderInfoMapper orderInfoMapper;
     @Autowired
     private SnacksAssistantGoodsClient snacksAssistantGoodsClient;
+    @Autowired
+    private SendService sendService;
     @Value("${server-id}")
     private long serverId;
     @Value("${center-id}")
@@ -35,8 +41,7 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     private final byte NO = 0;
     private final byte YES = 1;
 
-    //@TxTransaction(isStart = true)
-    //@Transactional
+
     @HystrixCommand
     @Override
     public SnacksResult addOrderInfoVoWx(OrderInfoVo orderInfoVo) throws Exception {
@@ -48,8 +53,12 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
         orderInfo.setId(new SnowflakeIdWorker(serverId, dataCenterId).nextId());
         if (orderInfoMapper.insertSelective(orderInfo)>0){
             JSONArray goodsAndNum = orderInfoVo.getGoods();
-            snacksAssistantGoodsClient.deleteQuantitySnacksInventory(goodsAndNum);
-            return new SnacksResult().ok();
+            Message msg = MessageBuilder.withPayload(JSONArray.toJSONBytes(goodsAndNum)).build();
+            if(sendService.requestInventoryDeduction().send(msg)){
+                return new SnacksResult().ok();
+            }else{
+                return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
+            }
         }else{
             return new SnacksResult().build(ErrorCode.SYS_ERROR.value(),ErrorCode.SYS_ERROR.msg());
         }

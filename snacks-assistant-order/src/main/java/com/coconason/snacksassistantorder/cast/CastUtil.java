@@ -42,12 +42,9 @@ public class CastUtil {
 		orderInfo.setDeduction(orderInfoVo.getDeduction());
 		orderInfo.setDiscount(orderInfoVo.getDiscount());
 		orderInfo.setGoods(JSONArray.toJSONString(orderInfoVo.getGoods()));
-		orderInfo.setId(Long.parseLong(orderInfoVo.getId()));
 		orderInfo.setPhoneNumber(orderInfoVo.getPhoneNumber());
 		orderInfo.setReceptionTimeLowerLimit(orderInfoVo.getReceptionTimeLowerLimit());
 		orderInfo.setReceptionTimeUpperLimit(orderInfoVo.getReceptionTimeUpperLimit());
-		orderInfo.setGoodsReceiveTime(sdf.parse(orderInfoVo.getGoodsReceiveTime()));
-		orderInfo.setGoodsSendTime(sdf.parse(orderInfoVo.getGoodsSendTime()));
 		orderInfo.setRecipient(orderInfoVo.getRecipient());
 		switch (orderInfoVo.getStatus()){
 			case "未完成" : orderInfo.setStatus((byte)0);break;

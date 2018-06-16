@@ -72,7 +72,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!--开启mybatis服务 -->
-		<!--<dependency>
+		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.2.0</version>
@@ -87,22 +87,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.6</version>
 			<scope>runtime</scope>
-		</dependency>-->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.19</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.43</version>
 		</dependency>
 		<!--开启test服务，对test文件夹有效 -->
 		<dependency>
@@ -169,28 +153,14 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-		<!--分布式事务框架LCN配置-->
+		<!--Stream Rabbit MQ-->
 		<dependency>
-			<groupId>com.codingapi</groupId>
-			<artifactId>transaction-springcloud</artifactId>
-			<version>4.1.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.codingapi</groupId>
-			<artifactId>tx-plugins-db</artifactId>
-			<version>4.1.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

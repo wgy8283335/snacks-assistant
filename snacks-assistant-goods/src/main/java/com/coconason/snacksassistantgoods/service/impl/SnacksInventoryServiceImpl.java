@@ -78,7 +78,6 @@ public class SnacksInventoryServiceImpl implements ISnacksInventoryService {
     }
 
     @Override
-    @Transactional
     public SnacksResult deleteQuantitySnacksInventory(JSONArray goodsAndNum) throws Exception {
         for(int i=0;i<goodsAndNum.size();i++){
             JSONObject goodsAndNumItem = goodsAndNum.getJSONObject(i);
@@ -89,16 +88,30 @@ public class SnacksInventoryServiceImpl implements ISnacksInventoryService {
             snacksInventoryCriteria.andSnacksInfoIdEqualTo(id);
             snacksInventoryCriteria.andDeletedEqualTo((byte)0);
             List<SnacksInventory> snacksInventoryList= snacksInventoryMapper.selectByExample(snacksInventoryExample);
-            for(SnacksInventory snacksInventory : snacksInventoryList) {
-                if (num <= snacksInventory.getQuantity()) {
-                    snacksInventoryCriteria.andIdEqualTo(snacksInventory.getId());
-                    snacksInventory.setQuantity(snacksInventory.getQuantity() - num);
-                    snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample);
-                }else {
-                    num = num - snacksInventory.getQuantity();
-                    snacksInventoryCriteria.andIdEqualTo(snacksInventory.getId());
-                    snacksInventory.setQuantity(0);
-                    snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample);
+            boolean flag =false;
+            for(SnacksInventory snacksInventory:snacksInventoryList) {
+                if(flag == false){
+                    if (num <= snacksInventory.getQuantity()) {
+                        SnacksInventoryExample snacksInventoryExample1 = new SnacksInventoryExample();
+                        SnacksInventoryExample.Criteria snacksInventoryCriteria1 = snacksInventoryExample1.createCriteria();
+                        snacksInventoryCriteria1.andSnacksInfoIdEqualTo(id);
+                        snacksInventoryCriteria1.andDeletedEqualTo((byte)0);
+                        snacksInventoryCriteria1.andIdEqualTo(snacksInventory.getId());
+                        snacksInventory.setQuantity(snacksInventory.getQuantity() - num);
+                        num = 0;
+                        snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample1);
+                        flag = true;
+                    }else {
+                        SnacksInventoryExample snacksInventoryExample2 = new SnacksInventoryExample();
+                        SnacksInventoryExample.Criteria snacksInventoryCriteria2 = snacksInventoryExample2.createCriteria();
+                        snacksInventoryCriteria2.andSnacksInfoIdEqualTo(id);
+                        snacksInventoryCriteria2.andDeletedEqualTo((byte)0);
+                        num = num - snacksInventory.getQuantity();
+                        snacksInventoryCriteria2.andIdEqualTo(snacksInventory.getId());
+                        snacksInventory.setQuantity(0);
+                        snacksInventory.setDeleted((byte)1);
+                        snacksInventoryMapper.updateByExampleSelective(snacksInventory,snacksInventoryExample2);
+                    }
                 }
             }
             if(num > 0){
